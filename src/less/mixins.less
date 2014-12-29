@@ -117,8 +117,34 @@
 	&.open-top {
 		
 		> .side {
-			//top
 			&:nth-child(5) { 
+				display: none;
+			}
+		}
+	}
+	
+	&.open-bottom {
+		
+		> .side {
+			&:nth-child(6) { 
+				display: none;
+			}
+		}
+	}
+	
+	&.open-front {
+		
+		> .side {
+			&:nth-child(1) { 
+				display: none;
+			}
+		}
+	}
+	
+	&.open-back {
+		
+		> .side {
+			&:nth-child(2) { 
 				display: none;
 			}
 		}
