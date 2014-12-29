@@ -57,3 +57,97 @@
 	-moz-text-fill-color: transparent;
 	text-fill-color: transparent;
 }
+
+.size(@width, @depth, @height, @color, @flex) {
+	position: absolute;
+	transform-style: preserve-3d;
+	
+	> .side {
+		position: absolute;	
+		background: @color;
+		bottom: 0;
+		z-index: 1;
+		width: 100%;
+		height: 100%;
+		//opacity: 0.5;
+		
+		.isnot100(@width, @height, @height, @color, @flex);
+		
+		//front
+		&:nth-child(1) {
+			transform: rotateY(0deg) translateZ(@depth/2);
+			background: lighten(@color, 10%);
+		}
+		
+		//back
+		&:nth-child(2) {
+			transform: rotateX(180deg) translateZ(@depth/2);
+			background: lighten(@color, 10%);
+		}
+		
+		//right
+		&:nth-child(3) {
+			left: (@width - @depth)/2;
+			transform: rotateY(90deg) translateZ(@width/2);
+			background: darken(@color, 10%);
+		}
+		
+		//left
+		&:nth-child(4) { 
+			left: (@width - @depth)/2;
+			transform: rotateY(-90deg) translateZ(@width/2);
+			background: darken(@color, 10%);
+		}
+		
+		//top
+		&:nth-child(5) { 
+			top: (@height - @depth)/2;
+			height: @depth;
+			transform: rotateX(90deg) translateZ(@height/2);
+		}
+		
+		//bottom
+		&:nth-child(6) {
+			bottom: (@height - @depth)/2;
+			height: @depth;
+			transform: rotateX(-90deg) translateZ(@height/2);
+		}
+	}
+	
+	&.open-top {
+		
+		> .side {
+			//top
+			&:nth-child(5) { 
+				display: none;
+			}
+		}
+	}
+}
+
+.isnot100(@width, @height, @height, @color, @flex) when not (@flex = true) {
+	
+	//front
+	&:nth-child(1) {
+		width: @width;
+		height: @height;
+	}
+	
+	//back
+	&:nth-child(2) {
+		width: @width;
+		height: @height;
+	}
+	
+	//right
+	&:nth-child(3) {
+		width: @depth;
+		height: @height;
+	}
+	
+	//left
+	&:nth-child(4) { 
+		width: @depth;
+		height: @height;
+	}
+}
