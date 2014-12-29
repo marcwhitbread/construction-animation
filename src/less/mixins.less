@@ -1,0 +1,59 @@
+@import "variables.less";
+
+.animation(@string) {
+	-webkit-animation: @string;
+	animation: @string;
+}
+
+.transform(@string) {
+	-webkit-transform: @string;
+	-moz-transform: @string;
+	-ms-transform: @string;
+	-o-transform: @string;
+}
+
+.transition(@transition) {
+	-webkit-transition: @transition;  
+	-moz-transition: @transition;
+	-ms-transition: @transition; 
+	-o-transition: @transition;  
+	transition: @transition;
+}
+
+.transition-transform(@transition) {
+	-webkit-transition: -webkit-transform @transition;
+	-moz-transition: -moz-transform @transition;
+	-ms-transition: -ms-transform @transition;
+	-o-transition: -o-transform @transition;
+}
+
+.box-shadow(@shadow) {
+	-webkit-box-shadow: @shadow;
+	box-shadow: @shadow;
+}
+
+.border-radius(@radius) {
+	-webkit-border-radius: @radius;
+	border-radius: @radius;
+}
+
+.background-gradient(@from, @to) {
+	background: -webkit-gradient(radial, center center, 0, center center, 10, from(@from), to(@to));
+	background: -webkit-radial-gradient(circle, @from, @to);
+	background: -moz-radial-gradient(circle, @from, @to);
+	background: -ms-radial-gradient(circle, @from, @to);
+}
+
+.text-image-mask(@background) {
+	color: @color;
+	-webkit-text-fill-color: transparent;
+	background: -webkit-linear-gradient(transparent, transparent), @background;
+	
+	-webkit-background-clip: text;
+	-moz-background-clip: text;
+	background-clip: text;
+	
+	-webkit-text-fill-color: transparent;
+	-moz-text-fill-color: transparent;
+	text-fill-color: transparent;
+}

@@ -1,4 +1,3 @@
-construction-animation
-======================
+<h1>construction-animation</h1>
 
-3D construction of a rising structure using CSS3 transforms.
+<p>3D construction of a rising structure using CSS3 transforms.</p>

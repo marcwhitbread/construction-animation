@@ -1,0 +1,76 @@
+@import "variables.less";
+
+.warmup() {
+	
+	0% {
+		opacity: 0;
+	}
+
+	55%,85%, {
+		opacity: 0.7;
+		color: desaturate(@color, 20%);
+	}
+	
+	40%,50%,90%,100% {
+		opacity: 1.0;
+		color: @color;
+	}
+	
+}
+
+@-webkit-keyframes warmup { .warmup(); }
+@keyframes warmup { .warmup(); }
+
+.burnout() {
+	
+	0%,29.999%,44%,49.999%,54%,99% {
+		opacity: 1.0;
+	}
+	
+	40%,43.999%,50%,53.999%,100% {
+		opacity: 0.0;
+	}
+	
+}
+
+@-webkit-keyframes burnout { .burnout(); }
+@keyframes burnout { .burnout(); }
+
+.flick-on() {
+	
+	0%,19.999%,25%,29.999% {
+		opacity: 0.0;
+	}
+	
+	20%,24.999%,30%,100% {
+		opacity: 1.0;
+	}
+	
+}
+
+@-webkit-keyframes flickon { .flick-on(); }
+@keyframes flickon { .flick-on(); }
+
+.flick-on-screen() {
+	
+	0%,19.999%,25%,29.999% {
+		opacity: 0.0;
+	}
+	
+	20%,24.999% {
+		opacity: 0.5;
+		color: desaturate(@color, 20%);
+	}
+	
+	30%,99.999% {
+		opacity: 1.0;
+	}
+	
+	100% {
+		color: @color;
+	}
+	
+}
+
+@-webkit-keyframes flickonscreen { .flick-on-screen(); }
+@keyframes flickonscreen { .flick-on-screen(); }
