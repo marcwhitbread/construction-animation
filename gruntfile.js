@@ -9,16 +9,28 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		uglify: {
+			minify: {
+				files: {
+					'app/js/script.min.js': 'src/js/*.js'
+				}
+			}
+		},
 		watch: {
 			less: {
 				files: 'src/less/*.less',
 				tasks: ['less:compile']
+			},
+			js: {
+				files: 'src/js/*.js',
+				tasks: ['uglify:minify']
 			}
 		}
 	});
 
 	//load tasks
 	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	
 	//register tasks

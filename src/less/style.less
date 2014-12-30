@@ -1,4 +1,4 @@
-@import "variables.less";
+@import "_variables.less";
 @import "mixins.less";
 @import "animations.less";
 
@@ -15,6 +15,7 @@
 }
 
 #plot-a1 {
+	-webkit-backface-visibility: hidden;
 	position: absolute;
 	top: 400px;
 	left: 300px;
@@ -29,30 +30,14 @@
 	height: @height;
 	
 	.size(@width, @depth, @height, #aaa, false);
-	//.transform(rotateY(90deg));
-	.transform(rotateY(180deg));
+	.transform(rotateY(90deg));
+	//.transform(rotateY(180deg));
 	.transform(rotateX(-30deg) rotateY(45deg));
 	
 	.animation(slamdown @build_init_duration @ease-out-quint forwards);
 }
 
 #structure {
-	position: absolute;
-	bottom: 5px;
-	left: 20px;
-	
-	@width: 100px;
-	@depth: 100px;
-	@height: 5px;
-	
-	width: @width;
-	height: @height;
-
-	.transition(height 1000ms linear);
-	.size(@width, @depth, @height, #564d44, true);
-	.transform(translateZ(0));
-	
-	//.animation(buildup @build_duration @ease-out @delay_build_duration forwards);
 }
 
 .container#container-1 {
@@ -102,6 +87,14 @@
 		height: 5px;
 	}
 	
+	100% {
+		height: 245px;
+	}
+	
+	/*0% {
+		height: 5px;
+	}
+	
 	15%,20% {
 		height: 50px;
 	}
@@ -135,8 +128,8 @@
 	}
 	
 	100% {
-		height: 250px;
-	}
+		height: 245px;
+	}*/
 	
 }
 

@@ -1,4 +1,4 @@
-@import "variables.less";
+@import "_variables.less";
 
 .animation(@string) {
 	-webkit-animation: @string;
@@ -114,24 +114,6 @@
 		}
 	}
 	
-	&.open-top {
-		
-		> .side {
-			&:nth-child(5) { 
-				display: none;
-			}
-		}
-	}
-	
-	&.open-bottom {
-		
-		> .side {
-			&:nth-child(6) { 
-				display: none;
-			}
-		}
-	}
-	
 	&.open-front {
 		
 		> .side {
@@ -145,6 +127,42 @@
 		
 		> .side {
 			&:nth-child(2) { 
+				display: none;
+			}
+		}
+	}
+	
+	&.open-right {
+		
+		> .side {
+			&:nth-child(3) { 
+				display: none;
+			}
+		}
+	}
+	
+	&.open-left {
+		
+		> .side {
+			&:nth-child(4) { 
+				display: none;
+			}
+		}
+	}
+	
+	&.open-top {
+		
+		> .side {
+			&:nth-child(5) { 
+				display: none;
+			}
+		}
+	}
+	
+	&.open-bottom {
+		
+		> .side {
+			&:nth-child(6) { 
 				display: none;
 			}
 		}
