@@ -153,14 +153,26 @@
 			);
 			
 			.text {
+				display: block;
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 100%;
+				left: 0;
 				text-align: right;
 				color: #fff;
-				margin: 5px 3px 0 0;
+				margin: 0 0 0 0;
 				
 				font-family: Verdana;
 				font-weight: 700;
-				font-size: 14px;
-				line-height: 105%;
+				font-size: 12px;
+				line-height: 12px;
+				
+				.transform(
+					translateX(@structure_wrap_height/2)
+					translateY(@structure_wrap_height/2 + 5px)
+					rotateZ(-90deg)
+				);
 			}
 		}
 	}
