@@ -5,6 +5,11 @@
 	animation: @string;
 }
 
+.animation-delay(@delay) {
+	-webkit-animation-delay: @delay;
+    animation-delay: @delay;
+}
+
 .transform(@string) {
 	-webkit-transform: @string;
 	-moz-transform: @string;
@@ -81,7 +86,7 @@
 		
 		//back
 		&:nth-child(2) {
-			transform: rotateX(180deg) translateZ(@depth/2);
+			transform: rotateX(-180deg) rotateZ(180deg) translateZ(@depth/2);
 			background: lighten(@color, 10%);
 		}
 		

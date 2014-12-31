@@ -18,7 +18,7 @@
 	.size(@width, @depth, @height, rgba(0,0,0,0), false, true);
 	.transform(
 		translateX(20px)
-		translateY(-5px)
+		translateY(-2px)
 	);
 	
 	//.animation(buildup @build_duration linear @delay_build_duration forwards);
@@ -102,33 +102,35 @@
 
 		.size(@width, @depth, @height, @crane_base_color, @structure_build_interior_pattern, false);
 		
-		.transform(
-			translateX(0)
-			translateY(-80px)
-			translateZ(0)
-		);
+		.transition(all 250ms linear);
 		
-		.transition(all 500ms linear);
+		.light {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			opacity: 0;
+			
+			width: 10px;
+			height: 10px;
+			background: #000;
+			z-index: 6;
+			
+			.transform(
+				translateX(@structure_width/2 - 5px)
+				translateY(0)
+				translateZ(0)
+				rotateX(90deg)
+			);
+			
+			.box-shadow(0 0 20px (@structure_width/2 - 20px) #fff);
+			
+			.animation(weldflicker 5000ms infinite);
+		}
 		
 		.panel {
 			bottom: 0;
 			left: 0;
 			z-index: 5;
-			
-			@width: @structure_width;
-			@depth: @structure_depth;
-			@height: @structure_build_deck_panel_height;
-			
-			width: @width;
-			height: @height;
-			
-			.size(@width, @depth, @height, @structure_build_deck_color, false, false);
-			
-			.transform(
-				translateX(0)
-				translateY(-(@structure_build_deck_height - @structure_build_deck_panel_height)/2)
-				translateZ(0)
-			);
 		}
 		
 		.sheet {
@@ -137,21 +139,6 @@
 			left: 0;
 			z-index: 4;
 			
-			@width: @structure_width - @structure_wrap_indent*2;
-			@depth: @structure_depth - @structure_wrap_indent*2;
-			@height: @structure_wrap_height;
-			
-			width: @width;
-			height: @height;
-			
-			.size(@width, @depth, @height, @structure_wrap_color, false, false);
-			
-			.transform(
-				translateX(@structure_wrap_indent)
-				translateY(-@structure_build_deck_height)
-				translateZ(0)
-			);
-			
 			.text {
 				display: block;
 				position: absolute;
@@ -159,20 +146,126 @@
 				right: 0;
 				width: 100%;
 				left: 0;
-				text-align: right;
-				color: #fff;
-				margin: 0 0 0 0;
+			}
+		}
+		
+		&.build-deck-1 {
+			.transform(
+				translateX(0)
+				translateY(-250px)
+				translateZ(0)
+			);
+			
+			.panel {
+				@width: @structure_width;
+				@depth: @structure_depth;
+				@height: @structure_build_deck_panel_1_height;
 				
-				font-family: Verdana;
-				font-weight: 700;
-				font-size: 12px;
-				line-height: 12px;
+				width: @width;
+				height: @height;
+				
+				.size(@width, @depth, @height, @structure_build_deck_color, false, false);
 				
 				.transform(
-					translateX(@structure_wrap_height/2)
-					translateY(@structure_wrap_height/2 + 5px)
-					rotateZ(-90deg)
+					translateX(0)
+					translateY(-(@structure_build_deck_height - @structure_build_deck_panel_1_height)/2 - @structure_build_deck_height + @structure_build_deck_panel_1_height/2)
+					translateZ(0)
 				);
+			}
+			
+			.sheet {
+				@width: @structure_width - @structure_wrap_indent*2;
+				@depth: @structure_depth - @structure_wrap_indent*2;
+				@height: @structure_wrap_1_height;
+				
+				width: @width;
+				height: @height;
+				
+				.size(@width, @depth, @height, @structure_wrap_1_color, false, false);
+				
+				.transform(
+					translateX(@structure_wrap_indent)
+					translateY(-(@structure_build_deck_height - @structure_build_deck_panel_1_height)/2 - @structure_build_deck_height + @structure_build_deck_panel_1_height/2 + @structure_wrap_1_height - @structure_build_deck_panel_1_height/4)
+					translateZ(0)
+				);
+				
+				.text {
+					top: auto;
+					bottom: 0;
+					
+					text-align: left;
+					color: #fff;
+					margin: 0 0 0 0;
+					
+					font-family: Verdana;
+					font-weight: 700;
+					font-size: 10px;
+					line-height: 10px;
+					
+					.transform(
+						translateX(4px)
+						translateY(-3px)
+					);
+				}
+			}
+		}
+		
+		&.build-deck-2 {
+			.transform(
+				translateX(0)
+				translateY((@structure_build_deck_height - @structure_build_deck_panel_2_height)/2 - 80px)
+				translateZ(0)
+			);
+			
+			.panel {
+				@width: @structure_width;
+				@depth: @structure_depth;
+				@height: @structure_build_deck_panel_2_height;
+				
+				width: @width;
+				height: @height;
+				
+				.size(@width, @depth, @height, @structure_build_deck_color, false, false);
+				
+				.transform(
+					translateX(0)
+					translateY(-(@structure_build_deck_height - @structure_build_deck_panel_2_height)/2)
+					translateZ(0)
+				);
+			}
+			
+			.sheet {
+				@width: @structure_width - @structure_wrap_indent*2;
+				@depth: @structure_depth - @structure_wrap_indent*2;
+				@height: @structure_wrap_2_height;
+				
+				width: @width;
+				height: @height;
+				
+				.size(@width, @depth, @height, @structure_wrap_2_color, false, false);
+				
+				.transform(
+					translateX(@structure_wrap_indent)
+					translateY(-@structure_build_deck_height)
+					translateZ(0)
+				);
+				
+				.text {
+					text-align: right;
+					color: #fff;
+					margin: 0 0 0 0;
+					
+					font-family: Verdana;
+					font-weight: 700;
+					font-size: 12px;
+					line-height: 12px;
+					
+					.transform(
+						translateX(@structure_wrap_2_height/2)
+						translateY(@structure_wrap_2_height/2 + 5px)
+						rotateZ(-90deg)
+					);
+				}
 			}
 		}
 	}
@@ -186,6 +279,8 @@
 			top: 0;
 			margin: 0 0 @structure_story_height 0;
 			z-index: 2;
+			//visibility: hidden;
+			//opacity: 0;
 			
 			@width: @structure_width - @structure_story_indent*2;
 			@depth: @structure_depth - @structure_story_indent*2;
@@ -199,23 +294,7 @@
 				translateX(@structure_story_indent)
 			);
 			
-			@iterations: 50;
-		
-			.mixin-loop (@i) when (@i > 0) {
-				
-				&:nth-child(@{i}) {
-					.transform(
-						translateX(@structure_story_indent)
-						translateY(-@i * (@structure_story_height + @structure_story_floor_height))
-					);
-					
-					.animation(fadein 1ms linear @build_floor_step * @i forwards);
-				}
-				
-				.mixin-loop(@i - 1);
-			}
-			
-			.mixin-loop(@iterations);
+			.transition(all 500ms linear);
 			
 			.wall {
 				bottom: 0;
@@ -234,6 +313,8 @@
 					translateX(@structure_fence_indent)
 					translateY(-@structure_story_floor_height)
 				);
+				
+				.transition(all 500ms linear);
 			}
 			
 			.girders {
@@ -249,6 +330,8 @@
 					width: @width;
 					height: @height;
 					.size(@width, @depth, @height, @structure_steel_color, false, false);
+					
+					.transition(all 500ms linear);
 					
 					&:nth-child(3),
 					&:nth-child(4) {
@@ -311,6 +394,8 @@
 					translateX(0)
 					translateY(0)
 				);
+				
+				.transition(all 500ms linear);
 			}
 			
 			.pillars {
@@ -327,7 +412,9 @@
 					height: @height;
 					
 					.size(@width, @depth, @height, @structure_steel_color, false, false);
-
+					
+					.transition(all 500ms linear);
+					
 					&:nth-child(1) {
 						.transform(
 							translateX(@structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
@@ -360,6 +447,11 @@
 						);
 					}
 				}
+			}
+			
+			&.p1 {
+				visibility: visible;
+				opacity: 1;
 			}
 			
 			&.p1p2 {
@@ -566,6 +658,42 @@
 					}
 				}
 			}
+			
+			@iterations: 100;
+		
+			.mixin-loop (@i) when (@i > 0) {
+				
+				&:nth-child(@{i}) {
+					.transform(
+						translateX(@structure_story_indent)
+						translateY(-@i * (@structure_story_height + @structure_story_floor_height))
+					);
+					
+					.animation-delay(@i * @structure_p1_build_duration);
+					
+					.wall {
+						.animation-delay(@i * @structure_p1_build_duration + @structure_p2_build_duration);
+					}
+					
+					.girders {
+						.animation-delay(@i * @structure_p1_build_duration + @structure_p2_build_duration);
+					}
+					
+					.floor {
+						.animation-delay(@i * @structure_p1_build_duration + @structure_p2_build_duration);
+					}
+					
+					.pillars {
+						.pillar {
+							.animation-delay(@i * @structure_p1_build_duration + @structure_p2_build_duration);
+						}
+					}
+				}
+				
+				.mixin-loop(@i - 1);
+			}
+			
+			.mixin-loop(@iterations);
 		}
 	}
 	

@@ -1,8 +1,67 @@
+var interval = undefined;
+
+//timing
+var structure_p1_build_delay = 500;
+var structure_p2_build_delay = structure_p1_build_delay * 4;
+var structure_p3_build_delay = structure_p1_build_delay * 8;
+
 $(document).ready(function() {
 	
 	build('#structure');
 	
 });
+
+function animation(id) {
+	
+	var current_floor = 0;
+	var floors = 26;
+	
+	interval = setInterval(function() {
+		if(current_floor >= floors) {
+			clearInterval(interval);
+			return true;
+		}
+		
+		buildp1($(id).children('.stories').children('.story').eq(current_floor));
+		
+		current_floor++;
+	}, structure_p1_build_delay);
+	
+}
+
+function buildp1(element) {
+	
+	$(element).addClass('p1');
+	
+	setTimeout(function() {
+		buildp2(element);
+	}, structure_p2_build_delay);
+	
+}
+
+function buildp2(element) {
+	
+	$(element).addClass('p2');
+	
+	setTimeout(function() {
+		buildp3(element);
+	}, structure_p3_build_delay);
+
+}
+
+function buildp3(element) {
+	
+	$(element).addClass('p3');
+	
+	var top = -7.5 + parseInt($(element).css('transform').split(',')[5], 10);
+	
+	console.log(top);
+	
+	$('#structure .build-deck').css({
+		'-webkit-transform': 'translateY(' + top + 'px)'
+	});
+	
+}
 
 function build(id) {
 	
@@ -135,5 +194,7 @@ function build(id) {
 		</div>"));
 		
 	}
+	
+	//animation(id);
 		
 }

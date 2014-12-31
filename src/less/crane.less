@@ -52,7 +52,7 @@
 				
 				.size(@width, @depth, @height, @crane_base_color, false, false);
 				
-				.animation(craneswing @build_duration @ease-out-quint);
+				.animation(craneswing @build_duration @ease-out-quint infinite);
 				
 				.trolley {
 					bottom: 0;
@@ -74,7 +74,7 @@
 					
 					.size(@width, @depth, @height, @crane_base_color, false, false);
 					
-					.animation(cranetrolley @build_duration @ease-out-quint);
+					.animation(cranetrolley @build_duration @ease-out-quint infinite);
 					
 					.wire {
 						position: absolute;
@@ -83,7 +83,7 @@
 						height: @crane_vert_height * 0.2;
 						background: @crane_wire_color;
 						
-						.animation(cranehook @build_duration @ease-out-quint);
+						.animation(cranehook @build_duration @ease-out-quint infinite);
 						
 						.hook {
 							bottom: 0;
@@ -114,12 +114,6 @@
 					.wire-2 {
 						left: auto;
 						right: 0;
-					}
-					
-					&:hover {
-						.wire {
-							height: @crane_vert_height * 0.8;
-						}
 					}
 				}
 				
@@ -319,7 +313,7 @@
 		}
 		
 		@{i}2.5%,@{i}3.5% {
-			height: @crane_vert_height * 0.8;
+			height: (@structure_story_floor_height + @structure_story_height) * 4;
 		}
 		
 		.mixin-loop(@i - 1);

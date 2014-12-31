@@ -14,7 +14,7 @@
 @crane_width: 8px;
 @crane_depth: 8px;
 @crane_height: 5px;
-@crane_vert_height: 30px;
+@crane_vert_height: 10px;
 @crane_arm_height: 2px;
 @crane_cab_height: 4px;
 
@@ -36,8 +36,10 @@
 @structure_build_panel_unindent: 2px;
 @structure_height: (@floors * (@structure_story_height + @structure_story_floor_height)) + 5px;
 @structure_build_deck_height: 5px;
-@structure_build_deck_panel_height: 20px;
-@structure_wrap_height: 60px;
+@structure_build_deck_panel_1_height: (@structure_story_height + @structure_story_floor_height)*1.5;
+@structure_build_deck_panel_2_height: 30px;
+@structure_wrap_1_height: 30px;
+@structure_wrap_2_height: 60px;
 @structure_wrap_indent: 5px;
 
 @structure_story_level_color: #94773e;
@@ -49,13 +51,18 @@
 @structure_brick_color: #84a1a5;
 @structure_wood_color: #ebcc9d;
 @structure_build_deck_color: #f4e178;
-@structure_wrap_color: #4e7060;
+@structure_wrap_1_color: #666;
+@structure_wrap_2_color: #4e7060;
 
-@structure_rebar_pattern: url(../../app/img/patterns/rebar.png);
-@structure_build_interior_pattern: url(../../app/img/patterns/build-interior.png);
+@structure_rebar_pattern: url(../img/patterns/rebar.png);
+@structure_build_interior_pattern: url(../img/patterns/build-interior.png);
 
-/* phase 1 */
-@structure_steel_width: 4px;
+	/* phase 1 */
+	@structure_steel_width: 4px;
+	
+	/* phase 2 */
+	@structure_fence_indent: 2px;
 
-/* phase 2 */
-@structure_fence_indent: 2px;
+	/* timing */
+	@structure_p1_build_duration: 500ms;
+	@structure_p2_build_duration: 3000ms;
