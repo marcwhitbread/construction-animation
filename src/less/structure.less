@@ -1,19 +1,7 @@
 @import "_variables.less";
 @import "mixins.less";
 @import "animations.less";
-
-@structure_height: (@floors * 10) + 5px;
-@structure_width: 100px;
-@structure_depth: 100px;
-@structure_story_indent: 12px;
-@structure_story_height: 9px;
-@structure_story_railing_height: 3px;
-@structure_story_level_height: 1px;
-@structure_story_level_color: #94773e;
-@structure_story_color: #9ec3d5;
-@structure_roof_height: 5px;
-
-@structure_build_panel_unindent: 2px;
+@import "crane.less";
 
 .structure {
 	position: absolute;
@@ -24,21 +12,21 @@
 	@height: @structure_height;
 	
 	width: @width;
-	height: @height;
+	height: 0;
 
 	.transition(height 1000ms linear);
-	.size(@width, @depth, @height, rgba(0,0,0,0), true);
+	.size(@width, @depth, @height, rgba(0,0,0,0), false, true);
 	.transform(
 		translateX(20px)
 		translateY(-5px)
 	);
 	
-	.animation(buildup @build_duration linear @delay_build_duration forwards);
+	//.animation(buildup @build_duration linear @delay_build_duration forwards);
 	
 	.roof {
 		top: 0;
 		left: 0;
-		
+
 		@width: @structure_width;
 		@depth: @structure_depth;
 		@height: @structure_roof_height;
@@ -46,194 +34,133 @@
 		width: @width;
 		height: @height;
 		
-		.size(@width, @depth, @height, @structure_story_level_color, true);
+		.size(@width, @depth, @height, rgba(0,0,0,0), false, false);
 		.transform(
 			translateX(0)
 			translateY(0)
 		);
-	}
-	
-	.top-build-panels {
-		position: absolute;
-		top: 0;
-		left: 0;
 		
-		.panel {
-			bottom: 0;
+		display: none;
+		
+		.tower {
+			top: 0;
 			left: 0;
-			
-			@width: @structure_width/4;
-			@depth: 2px;
-			@height: 30px;
+	
+			@width: @crane_width;
+			@depth: @crane_depth;
+			@height: @structure_roof_height;
 			
 			width: @width;
 			height: @height;
 			
-			.size(@width, @depth, @height, #f4e178, false);
-			
-			@y: @height*0.75;
-			
-			&:nth-child(9),
-			&:nth-child(10),
-			&:nth-child(11),
-			&:nth-child(12),
-			&:nth-child(13),
-			&:nth-child(14),
-			&:nth-child(15),
-			&:nth-child(16) {
-				
-				@width: 2px;
-				@depth: @structure_width/4;
-				@height: 30px;
-				
-				width: @width;
-				height: @height;
-				
-				.size(@width, @depth, @height, #f4e178, false);
-			}
-			
+			.size(@width, @depth, @height, @structure_concrete_color, false, true);
+		
 			&:nth-child(1) {
-				
 				.transform(
-					translateX(0)
-					translateY(@y)
-					translateZ(@structure_width/2 + @structure_build_panel_unindent)
+					translateX(11px)
+					translateY(0)
+					translateZ(-35px)
 				);
 			}
 			
 			&:nth-child(2) {
-				
 				.transform(
-					translateX(@structure_width/4)
-					translateY(@y)
-					translateZ(@structure_width/2 + @structure_build_panel_unindent)
+					translateX(11px)
+					translateY(0)
+					translateZ(35px)
 				);
 			}
 			
 			&:nth-child(3) {
-				
 				.transform(
-					translateX(@structure_width/2)
-					translateY(@y)
-					translateZ(@structure_width/2 + @structure_build_panel_unindent)
+					translateX(81px)
+					translateY(0)
+					translateZ(35px)
 				);
 			}
 			
 			&:nth-child(4) {
-				
 				.transform(
-					translateX(@structure_width*0.75)
-					translateY(@y)
-					translateZ(@structure_width/2 + @structure_build_panel_unindent)
+					translateX(81px)
+					translateY(0)
+					translateZ(-35px)
 				);
 			}
+		}
+	}
+	
+	.build-deck {
+		bottom: 0;
+		left: 0;
+		
+		@width: @structure_width;
+		@depth: @structure_depth;
+		@height: @structure_build_deck_height;
+		
+		width: @width;
+		height: @height;
+
+		.size(@width, @depth, @height, @crane_base_color, @structure_build_interior_pattern, false);
+		
+		.transform(
+			translateX(0)
+			translateY(-80px)
+			translateZ(0)
+		);
+		
+		.transition(all 500ms linear);
+		
+		.panel {
+			bottom: 0;
+			left: 0;
+			z-index: 5;
 			
-			&:nth-child(5) {
-				
-				.transform(
-					translateX(0)
-					translateY(@y)
-					translateZ(-@structure_width/2 - @structure_build_panel_unindent)
-				);
-			}
+			@width: @structure_width;
+			@depth: @structure_depth;
+			@height: @structure_build_deck_panel_height;
 			
-			&:nth-child(6) {
-				
-				.transform(
-					translateX(@structure_width/4)
-					translateY(@y)
-					translateZ(-@structure_width/2 - @structure_build_panel_unindent)
-				);
-			}
+			width: @width;
+			height: @height;
 			
-			&:nth-child(7) {
-				
-				.transform(
-					translateX(@structure_width/2)
-					translateY(@y)
-					translateZ(-@structure_width/2 - @structure_build_panel_unindent)
-				);
-			}
+			.size(@width, @depth, @height, @structure_build_deck_color, false, false);
 			
-			&:nth-child(8) {
-				
-				.transform(
-					translateX(@structure_width*0.75)
-					translateY(@y)
-					translateZ(-@structure_width/2 - @structure_build_panel_unindent)
-				);
-			}
+			.transform(
+				translateX(0)
+				translateY(-(@structure_build_deck_height - @structure_build_deck_panel_height)/2)
+				translateZ(0)
+			);
+		}
+		
+		.sheet {
+			opacity: 0.5;
+			bottom: 0;
+			left: 0;
+			z-index: 4;
 			
-			&:nth-child(9) {
-				
-				.transform(
-					translateX(-@structure_build_panel_unindent)
-					translateY(@y)
-					translateZ(-@structure_width/4 - @structure_width/8)
-				);
-			}
+			@width: @structure_width - @structure_wrap_indent*2;
+			@depth: @structure_depth - @structure_wrap_indent*2;
+			@height: @structure_wrap_height;
 			
-			&:nth-child(10) {
-				
-				.transform(
-					translateX(-@structure_build_panel_unindent)
-					translateY(@y)
-					translateZ(-@structure_width/4 + @structure_width/8)
-				);
-			}
+			width: @width;
+			height: @height;
 			
-			&:nth-child(11) {
-				
-				.transform(
-					translateX(-@structure_build_panel_unindent)
-					translateY(@y)
-					translateZ(@structure_width/8)
-				);
-			}
+			.size(@width, @depth, @height, @structure_wrap_color, false, false);
 			
-			&:nth-child(12) {
-				
-				.transform(
-					translateX(-@structure_build_panel_unindent)
-					translateY(@y)
-					translateZ(@structure_width/8 + @structure_width/4)
-				);
-			}
+			.transform(
+				translateX(@structure_wrap_indent)
+				translateY(-@structure_build_deck_height)
+				translateZ(0)
+			);
 			
-			&:nth-child(13) {
+			.text {
+				text-align: right;
+				color: #fff;
+				margin: 5px 3px 0 0;
 				
-				.transform(
-					translateX(@structure_depth + @structure_build_panel_unindent)
-					translateY(@y)
-					translateZ(-@structure_width/4 - @structure_width/8)
-				);
-			}
-			
-			&:nth-child(14) {
-				
-				.transform(
-					translateX(@structure_depth + @structure_build_panel_unindent)
-					translateY(@y)
-					translateZ(-@structure_width/4 + @structure_width/8)
-				);
-			}
-			
-			&:nth-child(15) {
-				
-				.transform(
-					translateX(@structure_depth + @structure_build_panel_unindent)
-					translateY(@y)
-					translateZ(@structure_width/8)
-				);
-			}
-			
-			&:nth-child(16) {
-				
-				.transform(
-					translateX(@structure_depth + @structure_build_panel_unindent)
-					translateY(@y)
-					translateZ(@structure_width/8 + @structure_width/4)
-				);
+				font-family: Verdana;
+				font-weight: 700;
+				font-size: 14px;
+				line-height: 105%;
 			}
 		}
 	}
@@ -246,18 +173,18 @@
 		.story {
 			top: 0;
 			margin: 0 0 @structure_story_height 0;
-			opacity: 0;
+			z-index: 2;
 			
-			@width: @structure_width - @structure_story_indent;
-			@depth: @structure_depth - @structure_story_indent;
-			@height: @structure_story_level_height;
+			@width: @structure_width - @structure_story_indent*2;
+			@depth: @structure_depth - @structure_story_indent*2;
+			@height: @structure_story_height + @structure_story_floor_height;
 			
 			width: @width;
 			height: @height;
-			.size(@width, @depth, @height, @structure_story_level_color, false);
+			.size(@width, @depth, @height, rgba(0,0,0,0), false, false);
 			
 			.transform(
-				translateX(@structure_story_indent/2)
+				translateX(@structure_story_indent)
 			);
 			
 			@iterations: 50;
@@ -266,8 +193,8 @@
 				
 				&:nth-child(@{i}) {
 					.transform(
-						translateX(@structure_story_indent/2)
-						translateY(-@i * 10px)
+						translateX(@structure_story_indent)
+						translateY(-@i * (@structure_story_height + @structure_story_floor_height))
 					);
 					
 					.animation(fadein 1ms linear @build_floor_step * @i forwards);
@@ -278,87 +205,357 @@
 			
 			.mixin-loop(@iterations);
 			
-			.level {
-				top: 0;
-				opacity: 0.6;
+			.wall {
+				bottom: 0;
+				z-index: 3;
+				opacity: 0;
 				
-				@width: @structure_width - @structure_story_indent;;
-				@depth: @structure_depth - @structure_story_indent;;
-				@height: @structure_story_height;
+				@width: @structure_width - @structure_story_indent*2 - @structure_fence_indent*2;
+				@depth: @structure_depth - @structure_story_indent*2 - @structure_fence_indent*2;
+				@height: @structure_story_height/2;
 				
 				width: @width;
 				height: @height;
-				.size(@width, @depth, @height, @structure_story_color, false);
+				.size(@width, @depth, @height, @structure_fence_color, false, false);
+				
+				.transform(
+					translateX(@structure_fence_indent)
+					translateY(-@structure_story_floor_height)
+				);
+			}
+			
+			.girders {
+				
+				.girder {
+					bottom: 0;
+					z-index: 3;
+					
+					@width: @structure_width - @structure_story_indent*2 - @structure_story_pillar_indent*2 - @crane_width + @structure_steel_width;
+					@depth: @structure_steel_width;
+					@height: @structure_story_floor_height;
+					
+					width: @width;
+					height: @height;
+					.size(@width, @depth, @height, @structure_steel_color, false, false);
+					
+					&:nth-child(3),
+					&:nth-child(4) {
+						@width: @structure_steel_width;
+						@depth: @structure_width - @structure_story_indent*2 - @structure_story_pillar_indent*2 - @crane_width - @structure_steel_width;
+						
+						width: @width;
+						height: @height;
+						.size(@width, @depth, @height, @structure_steel_color, false, false);
+					}
+						
+					&:nth-child(1) {
+						.transform(
+							translateX(@structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
+							translateY(0)
+							translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
+						);
+					}
+					
+					&:nth-child(2) {
+						.transform(
+							translateX(@structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
+							translateY(0)
+							translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
+						);
+					}
+					
+					&:nth-child(3) {
+						.transform(
+							translateX(@structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
+							translateY(0)
+							translateZ(0)
+						);
+					}
+					
+					&:nth-child(4) {
+						.transform(
+							translateX(@structure_width - @structure_story_indent*2 - @crane_width/2 - @structure_story_pillar_indent - @structure_steel_width/2)
+							translateY(0)
+							translateZ(0)
+						);
+					}
+				}
+			}
+			
+			.floor {
+				bottom: 0;
+				z-index: 3;
+				opacity: 0;
+				
+				@width: @structure_width - @structure_story_indent*2;
+				@depth: @structure_depth - @structure_story_indent*2;
+				@height: @structure_story_floor_height;
+				
+				width: @width;
+				height: @height;
+				.size(@width, @depth, @height, @structure_concrete_color, false, false);
 				
 				.transform(
 					translateX(0)
-					translateY(@structure_story_level_height)
-					translateZ(0)
+					translateY(0)
 				);
-				
-				opacity: 1;
 			}
 			
-			.balcony {
-				top: 0;
-				margin: 0 0 0 0;
-				
-				@width: @structure_story_indent/2;
-				@depth: @structure_depth * 0.5;
-				@height: @structure_story_level_height;
-				
-				width: @width;
-				height: @height;
-				.size(@width, @depth, @height, @structure_story_level_color, false);
-				
-				.railing {
-					top: 0;
-					margin: 0 0 0 0;
-					opacity: 0.6;
+			.pillars {
+				.pillar {
+					bottom: 0;
+					left: 0;
+					z-index: 4;
 					
-					@width: @structure_story_indent/2;
-					@depth: @structure_depth * 0.5;
-					@height: @structure_story_railing_height;
+					@width: @structure_steel_width;
+					@depth: @structure_steel_width;
+					@height: @structure_story_height;
 					
 					width: @width;
 					height: @height;
 					
-					.transform(
-						translateX(0)
-						translateY(-@structure_story_railing_height)
-						translateZ(0)
-					);
+					.size(@width, @depth, @height, @structure_steel_color, false, false);
+
+					&:nth-child(1) {
+						.transform(
+							translateX(@structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
+							translateY(-@structure_story_floor_height)
+							translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
+						);
+					}
 					
-					.size(@width, @depth, @height, @structure_story_color, false);
-				}
-				
-				&.b1 {
-					.transform(
-						translateX(@structure_depth - @structure_story_indent)
-						translateY(0)
-						translateZ(0)
-					);
-				}
-				
-				&.b2 {
-					.transform(
-						translateX(-@structure_story_indent/2)
-						translateY(0)
-						translateZ(0)
-					);
+					&:nth-child(2) {
+						.transform(
+							translateX(@structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
+							translateY(-@structure_story_floor_height)
+							translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
+						);
+					}
+					
+					&:nth-child(3) {
+						.transform(
+							translateX(@structure_width - @structure_story_indent*2 - @crane_width - @structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
+							translateY(-@structure_story_floor_height)
+							translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
+						);
+					}
+					
+					&:nth-child(4) {
+						.transform(
+							translateX(@structure_width - @structure_story_indent*2 - @crane_width - @structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
+							translateY(-@structure_story_floor_height)
+							translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
+						);
+					}
 				}
 			}
 			
-			&:first-child {
+			&.p1p2 {
+				.wall {
+					opacity: 0;
+				}
 				
-				.level {
+				.girders {
+					opacity: 0;
+				}
+				
+				.floor {
 					opacity: 1;
-					@width: @structure_width - @structure_story_indent;;
-					@depth: @structure_depth - @structure_story_indent;;
+					
+					@width: @structure_width - @structure_story_indent*2;
+					@depth: @structure_depth - @structure_story_indent*2;
+					@height: @structure_story_floor_height;
+					
+					width: @width;
+					height: @height;
+					.size(@width, @depth, @height, @structure_concrete_color, @structure_rebar_pattern, false);
+				}
+				
+				.pillars {
+					.pillar {
+						opacity: 1;
+						
+						@width: @crane_width;
+						@depth: @crane_depth;
+						@height: @structure_story_height;
+						
+						width: @width;
+						
+						.size(@width, @depth, @height, @structure_concrete_color, @structure_rebar_pattern, false);
+						
+						&:nth-child(1) {
+							.transform(
+								translateX(@structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
+							);
+						}
+						
+						&:nth-child(2) {
+							.transform(
+								translateX(@structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
+							);
+						}
+						
+						&:nth-child(3) {
+							.transform(
+								translateX(@structure_width - @structure_story_indent*2 - @crane_width - @structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
+							);
+						}
+						
+						&:nth-child(4) {
+							.transform(
+								translateX(@structure_width - @structure_story_indent*2 - @crane_width - @structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
+							);
+						}
+					}
+				}
+			}
+			
+			&.p2 {
+				.wall {
+					opacity: 0.5;
+				}
+				
+				.girders {
+					opacity: 0;
+				}
+				
+				.floor {
+					opacity: 1;
+				}
+				
+				.pillars {
+					.pillar {
+						@width: @crane_width;
+						@depth: @crane_depth;
+						@height: @structure_story_height;
+						
+						width: @width;
+						
+						.size(@width, @depth, @height, @structure_concrete_color, false, false);
+						
+						&:nth-child(1) {
+							.transform(
+								translateX(@structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
+							);
+						}
+						
+						&:nth-child(2) {
+							.transform(
+								translateX(@structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
+							);
+						}
+						
+						&:nth-child(3) {
+							.transform(
+								translateX(@structure_width - @structure_story_indent*2 - @crane_width - @structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
+							);
+						}
+						
+						&:nth-child(4) {
+							.transform(
+								translateX(@structure_width - @structure_story_indent*2 - @crane_width - @structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
+							);
+						}
+					}
+				}
+			}
+			
+			&.p3 {
+				.wall {
+					opacity: 0.7;
+					
+					@width: @structure_width - @structure_story_indent*2;
+					@depth: @structure_depth - @structure_story_indent*2;
 					@height: @structure_story_height;
-					.size(@width, @depth, @height, @structure_story_level_color, false);
+					
+					width: @width;
+					height: @height;
+					.size(@width, @depth, @height, @structure_glass_color, false, false);
+					
+					.transform(
+						translateX(0)
+						translateY(-@structure_story_floor_height)
+					);
+				}
+				
+				.girders {
+					opacity: 0;
+				}
+				
+				.floor {
+					opacity: 1;
+					
+					@width: @structure_width - @structure_story_indent*2;
+					@depth: @structure_depth - @structure_story_indent*2;
+					@height: @structure_story_floor_height;
+					
+					width: @width;
+					height: @height;
+					.size(@width, @depth, @height, @structure_brick_color, false, false);
+				}
+				
+				.pillars {
+					.pillar {
+						@width: @crane_width;
+						@depth: @crane_depth;
+						@height: @structure_story_height;
+						
+						width: @width;
+						
+						.size(@width, @depth, @height, @structure_brick_color, false, false);
+						
+						&:nth-child(1) {
+							.transform(
+								translateX(@structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
+							);
+						}
+						
+						&:nth-child(2) {
+							.transform(
+								translateX(@structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
+							);
+						}
+						
+						&:nth-child(3) {
+							.transform(
+								translateX(@structure_width - @structure_story_indent*2 - @crane_width - @structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
+							);
+						}
+						
+						&:nth-child(4) {
+							.transform(
+								translateX(@structure_width - @structure_story_indent*2 - @crane_width - @structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
+							);
+						}
+					}
 				}
 			}
 		}
 	}
+	
+	.crane();
 }

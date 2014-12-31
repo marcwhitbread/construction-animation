@@ -2,313 +2,312 @@
 @import "mixins.less";
 @import "animations.less";
 
-@crane_width: 8px;
-@crane_depth: 8px;
-@crane_height: 5px;
-@crane_vert_height: 30px;
-@crane_arm_height: 2px;
-@crane_cab_height: 4px;
-
-@crane_wire_color: #333;
-@crane_arm_color: #ffd158;
-@crane_cab_color: #9ea2a5;
-@crane_base_color: #3b597f;
-@crane_weight_color: #606568;
-
-.crane {
-	margin: -@crane_height 0 0 0;
-	width: @crane_width;
-	height: @crane_height;
-
-	.size(@crane_width, @crane_depth, @crane_height, @crane_base_color, false);
+.crane() {
 	
-	.vert-a { 
-		bottom: 0;
+	.crane {
+		margin: -@crane_height 0 0 0;
+		width: @crane_width;
+		height: @crane_height;
+	
+		.size(@crane_width, @crane_depth, @crane_height, @crane_base_color, false, false);
 		
-		@width: @crane_width/2;
-		@depth: @crane_width/2;
-		@height: @crane_vert_height;
+		top: 0;
+		left: 0;
 		
-		width: @width;
-		height: @height;
+		.transform(
+			translateX(@structure_story_pillar_indent + @structure_story_indent)
+			translateY(-@structure_height + 5px)
+			translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
+		);
 		
-		.transform(translateY(-@crane_height) translateX(@crane_width/4) translateZ(0));
-		.size(@width, @depth, @height, @crane_base_color, false);
-		
-		.swivel {
+		.vert-a { 
 			bottom: 0;
 			
-			@width: @crane_width;
-			@depth: @crane_width;
+			@width: @crane_width/2;
+			@depth: @crane_width/2;
+			@height: @crane_vert_height;
+			
+			width: @width;
+			height: @height;
+			
+			.transform(translateY(-@crane_height) translateX(@crane_width/4) translateZ(0));
+			.size(@width, @depth, @height, @crane_base_color, false, false);
+			
+			.swivel {
+				bottom: 0;
+				
+				@width: @crane_width;
+				@depth: @crane_width;
+				@height: @crane_width;
+				
+				width: @width;
+				height: @height;
+				
+				.transition-transform(750ms linear);
+				.transform(
+					translateX(-@crane_width/4) 
+					translateY(-@crane_vert_height) 				
+					translateZ(0) 
+					rotateY(-10deg));
+				
+				.size(@width, @depth, @height, @crane_base_color, false, false);
+				
+				.animation(craneswing @build_duration @ease-out-quint);
+				
+				.trolley {
+					bottom: 0;
+					left: 0;
+					z-index: 3;
+					
+					@width: @crane_width/2;
+					@depth: @crane_depth - 4px;
+					@height: @crane_cab_height;
+					
+					width: @width;
+					height: @height;
+					
+					.transform(
+						translateX(@crane_width * 3px)
+						translateY(@crane_width/4) 
+						translateZ(0)
+					);
+					
+					.size(@width, @depth, @height, @crane_base_color, false, false);
+					
+					.animation(cranetrolley @build_duration @ease-out-quint);
+					
+					.wire {
+						position: absolute;
+						top: 0;
+						width: 1px;
+						height: @crane_vert_height * 0.2;
+						background: @crane_wire_color;
+						
+						.animation(cranehook @build_duration @ease-out-quint);
+						
+						.hook {
+							bottom: 0;
+							left: 0;
+							z-index: 3;
+							
+							@width: @crane_width/2;
+							@depth: @crane_depth - 4px;
+							@height: @crane_cab_height;
+							
+							width: @width;
+							height: @height;
+							
+							.transform(
+								translateX(-@crane_width/2 + 1px)
+								translateY(@crane_cab_height) 
+								translateZ(0)
+							);
+							
+							.size(@width, @depth, @height, @crane_base_color, false, false);
+						}
+					}
+					
+					.wire-1 {
+						left: 0;
+					}
+					
+					.wire-2 {
+						left: auto;
+						right: 0;
+					}
+					
+					&:hover {
+						.wire {
+							height: @crane_vert_height * 0.8;
+						}
+					}
+				}
+				
+				.cab {
+					bottom: 0;
+					left: 0;
+					z-index: 3;
+					
+					@width: @crane_width;
+					@depth: @crane_depth - 4px;
+					@height: @crane_cab_height;
+					
+					width: @width;
+					height: @height;
+					
+					.transform(
+						translateX(@crane_width + 2px)
+						translateY(@crane_width/4) 
+						translateZ(0)
+					);
+					
+					.size(@width, @depth, @height, @crane_cab_color, false, false);
+				}
+	
+				.arm-a {
+					bottom: 0;
+					left: 0;
+					z-index: 3;
+					
+					@width: @crane_width * 10px;
+					@depth: @crane_depth - 4px;
+					@height: @crane_arm_height;
+					
+					width: @width;
+					height: @height;
+					
+					.transform(
+						translateX(@crane_width) 
+						translateY(-@crane_width/4) 
+						translateZ(0));
+					
+					.size(@width, @depth, @height, @crane_arm_color, false, false);
+				}
+				
+				.arm-b {
+					bottom: 0;
+					right: 0;
+					z-index: 3;
+					
+					@width: @crane_width * 2px;
+					@depth: @crane_depth - 4px;
+					@height: @crane_arm_height;
+					
+					width: @width;
+					height: @height;
+					
+					.transform(
+						translateX(-@crane_width) 
+						translateY(-@crane_width/4) 
+						translateZ(0));
+					
+					.size(@width, @depth, @height, @crane_arm_color, false, false);
+				}
+				
+				.weight-1 {
+					bottom: 0;
+					right: 0;
+					z-index: 3;
+					
+					@width: 2px;
+					@depth: @crane_depth - 4px;
+					@height: @crane_cab_height*2;
+					
+					width: @width;
+					height: @height;
+					
+					.transform(
+						translateX(-@crane_width*2 + 2px)
+						translateY(-@crane_width/2 + @crane_cab_height*2/2 + 1px) 
+						translateZ(0)
+					);
+					
+					.size(@width, @depth, @height, @crane_weight_color, false, false);
+				}
+				
+				.weight-2 {
+					bottom: 0;
+					right: 0;
+					z-index: 3;
+					
+					@width: 2px;
+					@depth: @crane_depth - 5px;
+					@height: @crane_cab_height*2;
+					
+					width: @width;
+					height: @height;
+					
+					.transform(
+						translateX(-@crane_width*2 + 5px)
+						translateY(-@crane_width/2 + @crane_cab_height*2/2 + 1px) 
+						translateZ(0)
+					);
+					
+					.size(@width, @depth, @height, @crane_weight_color, false, false);
+				}
+				
+				> .wire-1 {
+					bottom: 0;
+					left: 0;
+					
+					@opposite: @crane_width * 2 - (@crane_width/4) - @crane_arm_height;
+					@adjacent: (@crane_width * 9.5px) + ((@crane_width - @width)/2) + (@crane_width/4);
+					
+					width: sqrt((@opposite * @opposite) + (@adjacent * @adjacent));
+					height: 1px;
+					
+					background: @crane_wire_color;
+					
+					.transform(
+						translateX(@crane_width/2) 
+						translateY(-@crane_width/4) 
+						translateZ(0)
+						rotateZ(tan(@opposite / @adjacent) + 0rad)
+					);
+				}
+				
+				> .wire-2 {
+					bottom: 0;
+					left: 0;
+					
+					@opposite: @crane_width * 2 - (@crane_width/4) - @crane_arm_height;
+					@adjacent: (@crane_width * 5px) + ((@crane_width - @width)/2) + (@crane_width/4);
+					
+					width: sqrt((@opposite * @opposite) + (@adjacent * @adjacent));
+					height: 1px;
+					
+					background: @crane_wire_color;
+					
+					.transform(
+						translateX(@crane_width/2) 
+						translateY(-@crane_width/4) 
+						translateZ(0)
+						rotateZ(tan(@opposite / @adjacent) + 0rad)
+					);
+				}
+				
+				> .wire-3 {
+					bottom: 0;
+					right: 0;
+					
+					@opposite: (@crane_width * 2px) + ((@crane_width - @width)/2) + (@crane_width/4);
+					@adjacent: @crane_width * 2 - (@crane_width/4) - @crane_arm_height;
+					
+					width: sqrt((@opposite * @opposite) + (@adjacent * @adjacent));
+					height: 1px;
+					
+					background: @crane_wire_color;
+					
+					.transform(
+						translateX(-@crane_width*2) 
+						translateY(-@crane_width/4 - 2px) 
+						translateZ(0)
+						rotateZ(tan(@opposite / @adjacent) + (pi()/3rad));
+					);
+				}
+			}
+		}
+		
+		.vert-b {
+			bottom: 0;
+			
+			@width: @crane_width/4;
+			@depth: @crane_width/4;
 			@height: @crane_width;
 			
 			width: @width;
 			height: @height;
 			
-			.transition-transform(750ms linear);
 			.transform(
-				translateX(-@crane_width/4) 
-				translateY(-@crane_vert_height) 				
-				translateZ(0) 
-				rotateY(-10deg));
-			
-			.size(@width, @depth, @height, @crane_base_color, false);
-			
-			.animation(craneswing @build_duration @ease-out-quint);
-			
-			.trolley {
-				bottom: 0;
-				left: 0;
-				z-index: 3;
+				translateX((@crane_width - @width)/2)
+				translateY(-@crane_height - @crane_vert_height - @crane_width) 
+				translateZ(0));
 				
-				@width: @crane_width/2;
-				@depth: @crane_depth - 4px;
-				@height: @crane_cab_height;
-				
-				width: @width;
-				height: @height;
-				
-				.transform(
-					translateX(@crane_width * 3px)
-					translateY(@crane_width/4) 
-					translateZ(0)
-				);
-				
-				.size(@width, @depth, @height, @crane_base_color, false);
-				
-				.animation(cranetrolley @build_duration @ease-out-quint);
-				
-				.wire {
-					position: absolute;
-					top: 0;
-					width: 1px;
-					height: @crane_vert_height * 0.2;
-					background: @crane_wire_color;
-					
-					.animation(cranehook @build_duration @ease-out-quint);
-					
-					.hook {
-						bottom: 0;
-						left: 0;
-						z-index: 3;
-						
-						@width: @crane_width/2;
-						@depth: @crane_depth - 4px;
-						@height: @crane_cab_height;
-						
-						width: @width;
-						height: @height;
-						
-						.transform(
-							translateX(-@crane_width/2 + 1px)
-							translateY(@crane_cab_height) 
-							translateZ(0)
-						);
-						
-						.size(@width, @depth, @height, @crane_base_color, false);
-					}
-				}
-				
-				.wire-1 {
-					left: 0;
-				}
-				
-				.wire-2 {
-					left: auto;
-					right: 0;
-				}
-				
-				&:hover {
-					.wire {
-						height: @crane_vert_height * 0.8;
-					}
-				}
-			}
-			
-			.cab {
-				bottom: 0;
-				left: 0;
-				z-index: 3;
-				
-				@width: @crane_width;
-				@depth: @crane_depth - 4px;
-				@height: @crane_cab_height;
-				
-				width: @width;
-				height: @height;
-				
-				.transform(
-					translateX(@crane_width + 2px)
-					translateY(@crane_width/4) 
-					translateZ(0)
-				);
-				
-				.size(@width, @depth, @height, @crane_cab_color, false);
-			}
-
-			.arm-a {
-				bottom: 0;
-				left: 0;
-				z-index: 3;
-				
-				@width: @crane_width * 10px;
-				@depth: @crane_depth - 4px;
-				@height: @crane_arm_height;
-				
-				width: @width;
-				height: @height;
-				
-				.transform(
-					translateX(@crane_width) 
-					translateY(-@crane_width/4) 
-					translateZ(0));
-				
-				.size(@width, @depth, @height, @crane_arm_color, false);
-			}
-			
-			.arm-b {
-				bottom: 0;
-				right: 0;
-				z-index: 3;
-				
-				@width: @crane_width * 2px;
-				@depth: @crane_depth - 4px;
-				@height: @crane_arm_height;
-				
-				width: @width;
-				height: @height;
-				
-				.transform(
-					translateX(-@crane_width) 
-					translateY(-@crane_width/4) 
-					translateZ(0));
-				
-				.size(@width, @depth, @height, @crane_arm_color, false);
-			}
-			
-			.weight-1 {
-				bottom: 0;
-				right: 0;
-				z-index: 3;
-				
-				@width: 2px;
-				@depth: @crane_depth - 4px;
-				@height: @crane_cab_height*2;
-				
-				width: @width;
-				height: @height;
-				
-				.transform(
-					translateX(-@crane_width*2 + 2px)
-					translateY(-@crane_width/2 + @crane_cab_height*2/2 + 1px) 
-					translateZ(0)
-				);
-				
-				.size(@width, @depth, @height, @crane_weight_color, false);
-			}
-			
-			.weight-2 {
-				bottom: 0;
-				right: 0;
-				z-index: 3;
-				
-				@width: 2px;
-				@depth: @crane_depth - 5px;
-				@height: @crane_cab_height*2;
-				
-				width: @width;
-				height: @height;
-				
-				.transform(
-					translateX(-@crane_width*2 + 5px)
-					translateY(-@crane_width/2 + @crane_cab_height*2/2 + 1px) 
-					translateZ(0)
-				);
-				
-				.size(@width, @depth, @height, @crane_weight_color, false);
-			}
-			
-			> .wire-1 {
-				bottom: 0;
-				left: 0;
-				
-				@opposite: @crane_width * 2 - (@crane_width/4) - @crane_arm_height;
-				@adjacent: (@crane_width * 9.5px) + ((@crane_width - @width)/2) + (@crane_width/4);
-				
-				width: sqrt((@opposite * @opposite) + (@adjacent * @adjacent));
-				height: 1px;
-				
-				background: @crane_wire_color;
-				
-				.transform(
-					translateX(@crane_width/2) 
-					translateY(-@crane_width/4) 
-					translateZ(0)
-					rotateZ(tan(@opposite / @adjacent) + 0rad)
-				);
-			}
-			
-			> .wire-2 {
-				bottom: 0;
-				left: 0;
-				
-				@opposite: @crane_width * 2 - (@crane_width/4) - @crane_arm_height;
-				@adjacent: (@crane_width * 5px) + ((@crane_width - @width)/2) + (@crane_width/4);
-				
-				width: sqrt((@opposite * @opposite) + (@adjacent * @adjacent));
-				height: 1px;
-				
-				background: @crane_wire_color;
-				
-				.transform(
-					translateX(@crane_width/2) 
-					translateY(-@crane_width/4) 
-					translateZ(0)
-					rotateZ(tan(@opposite / @adjacent) + 0rad)
-				);
-			}
-			
-			> .wire-3 {
-				bottom: 0;
-				right: 0;
-				
-				@opposite: (@crane_width * 2px) + ((@crane_width - @width)/2) + (@crane_width/4);
-				@adjacent: @crane_width * 2 - (@crane_width/4) - @crane_arm_height;
-				
-				width: sqrt((@opposite * @opposite) + (@adjacent * @adjacent));
-				height: 1px;
-				
-				background: @crane_wire_color;
-				
-				.transform(
-					translateX(-@crane_width*2) 
-					translateY(-@crane_width/4 - 2px) 
-					translateZ(0)
-					rotateZ(tan(@opposite / @adjacent) + (pi()/3rad));
-				);
-			}
+			.size(@width, @depth, @height, @crane_base_color, false, false);
 		}
 	}
-	
-	.vert-b {
-		bottom: 0;
-		
-		@width: @crane_width/4;
-		@depth: @crane_width/4;
-		@height: @crane_width;
-		
-		width: @width;
-		height: @height;
-		
-		.transform(
-			translateX((@crane_width - @width)/2)
-			translateY(-@crane_height - @crane_vert_height - @crane_width) 
-			translateZ(0));
-			
-		.size(@width, @depth, @height, @crane_base_color, false);
-	}
 }
-
+	
 .crane-hook() {
 	
 	@iterations: 10;

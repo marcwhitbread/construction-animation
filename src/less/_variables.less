@@ -3,9 +3,59 @@
 
 @color: #000;
 
-@floors: 24;
+@floors: 26;
 
 @build_init_duration: 0s;
 @delay_build_duration: @build_init_duration;
 @build_floor_step: 500ms;
 @build_duration: @floors * @build_floor_step;
+
+/* crane */
+@crane_width: 8px;
+@crane_depth: 8px;
+@crane_height: 5px;
+@crane_vert_height: 30px;
+@crane_arm_height: 2px;
+@crane_cab_height: 4px;
+
+@crane_wire_color: #333;
+@crane_arm_color: #ffd158;
+@crane_cab_color: #9ea2a5;
+@crane_base_color: #3b597f;
+@crane_weight_color: #606568;
+
+/* structure */
+@structure_width: 100px;
+@structure_depth: 100px;
+@structure_story_indent: 6px;
+@structure_story_height: 11px;
+@structure_story_railing_height: 3px;
+@structure_story_floor_height: 1px;
+@structure_story_pillar_indent: 4px;
+@structure_roof_height: 5px;
+@structure_build_panel_unindent: 2px;
+@structure_height: (@floors * (@structure_story_height + @structure_story_floor_height)) + 5px;
+@structure_build_deck_height: 5px;
+@structure_build_deck_panel_height: 20px;
+@structure_wrap_height: 50px;
+@structure_wrap_indent: 5px;
+
+@structure_story_level_color: #94773e;
+@structure_story_color: #9ec3d5;
+@structure_concrete_color: #d5d2cd;
+@structure_fence_color: #bc4104;
+@structure_steel_color: #561d02;
+@structure_glass_color: #a2c3d4;
+@structure_brick_color: #84a1a5;
+@structure_wood_color: #ebcc9d;
+@structure_build_deck_color: #f4e178;
+@structure_wrap_color: #4e7060;
+
+@structure_rebar_pattern: url(../../app/img/patterns/rebar.png);
+@structure_build_interior_pattern: url(../../app/img/patterns/build-interior.png);
+
+/* phase 1 */
+@structure_steel_width: 4px;
+
+/* phase 2 */
+@structure_fence_indent: 2px;

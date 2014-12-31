@@ -15,8 +15,6 @@
 }
 
 #plot-a1 {
-	-webkit-backface-visibility: hidden;
-	position: absolute;
 	top: 400px;
 	left: 300px;
 	width: 100px;
@@ -29,10 +27,10 @@
 	width: @width;
 	height: @height;
 	
-	.size(@width, @depth, @height, #aaa, false);
-	.transform(rotateY(90deg));
+	.size(@width, @depth, @height, #aaa, false, false);
+	.transform(rotateX(-30deg) rotateY(55deg));
+	//.transform(rotateY(90deg));
 	//.transform(rotateY(180deg));
-	.transform(rotateX(-30deg) rotateY(45deg));
 	
 	.animation(slamdown @build_init_duration @ease-out-quint forwards);
 }
@@ -46,6 +44,8 @@
 	
 	.transform(rotateY(0) translateZ(-28px));
 	.container(#a96639);
+	
+	display: none;
 }
 
 .container#container-2 {
@@ -54,6 +54,8 @@
 	
 	.transform(rotateY(0) translateZ(46px));
 	.container(#a42721);
+	
+	display: none;
 }
 
 .container(@color) {
@@ -67,18 +69,10 @@
 	width: @width;
 	height: @height;
 
-	.size(@width, @depth, @height, @color, false);
+	.size(@width, @depth, @height, @color, false, false);
 }
 
 #crane-1 {
-	top: 0;
-	bottom: 0;
-	left: 0;
-	
-	.transform(
-		translateX(7px)
-		translateZ(-39px)
-	);
 }
 
 .build-up() {

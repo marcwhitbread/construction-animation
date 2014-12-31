@@ -7,12 +7,17 @@ $(document).ready(function() {
 function build(id) {
 	
 	//stories
-	var height = 245;
-	var stories = (height-5) / 10;
+	var height = 271;
+	var stories = (height-5) / 11;
 	
-	for(var i = 0; i < stories; i++) {
+	for(var i = 0; i < 26; i++) {
 		
-		$(id).children('.stories').append($("<div class = 'story'>\
+		var phase = (i > 26-5) ? 'p1' : 
+					(i > 26-6) ? 'p1p2' : 
+					(i > 26-20) ? 'p2' : 'p3';
+		//var phase = (i > 20-8) ? 'p1' : 'p2';
+		
+		$(id).children('.stories').append($("<div class = 'story " + phase + "'>\
 			<div class = 'side'></div>\
 			<div class = 'side'></div>\
 			<div class = 'side'></div>\
@@ -20,58 +25,107 @@ function build(id) {
 			<div class = 'side'></div>\
 			<div class = 'side'></div>\
 			\
-			<div class = 'level'>\
-				<div class = 'side'></div>\
-				<div class = 'side'></div>\
-				<div class = 'side'></div>\
-				<div class = 'side'></div>\
-				<div class = 'side'></div>\
-				<div class = 'side'></div>\
-			</div>
-			\
-			<div class = 'balcony b1 open-front'>\
-				<div class = 'side'></div>\
-				<div class = 'side'></div>\
-				<div class = 'side'></div>\
-				<div class = 'side'></div>\
-				<div class = 'side'></div>\
-				<div class = 'side'></div>\
+			<div class = 'girders'>\
+				<div class = 'girder'>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+				</div>\
 				\
-				<div class = 'railing open-top open-bottom open-left'>\
+				<div class = 'girder'>\
 					<div class = 'side'></div>\
 					<div class = 'side'></div>\
 					<div class = 'side'></div>\
 					<div class = 'side'></div>\
 					<div class = 'side'></div>\
 					<div class = 'side'></div>\
-				</div>
+				</div>\
+				
+				<div class = 'girder'>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+				</div>\
+				\
+				<div class = 'girder'>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+				</div>\
 			</div>\
 			\
-			<div class = 'balcony b2'>\
+			<div class = 'floor'>\
 				<div class = 'side'></div>\
 				<div class = 'side'></div>\
 				<div class = 'side'></div>\
 				<div class = 'side'></div>\
 				<div class = 'side'></div>\
 				<div class = 'side'></div>\
+			</div>\
+			\
+			<div class = 'wall open-top open-bottom'>\
+				<div class = 'side'></div>\
+				<div class = 'side'></div>\
+				<div class = 'side'></div>\
+				<div class = 'side'></div>\
+				<div class = 'side'></div>\
+				<div class = 'side'></div>\
+			</div>\
+			\
+			<div class = 'pillars'>\
+				<div class = 'pillar'>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+				</div>\
 				\
-				<div class = 'railing open-top open-bottom open-right'>\
+				<div class = 'pillar'>\
 					<div class = 'side'></div>\
 					<div class = 'side'></div>\
 					<div class = 'side'></div>\
 					<div class = 'side'></div>\
 					<div class = 'side'></div>\
 					<div class = 'side'></div>\
-				</div>
-			</div>
+				</div>\
+				\
+				<div class = 'pillar'>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+				</div>\
+				\
+				<div class = 'pillar'>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+					<div class = 'side'></div>\
+				</div>\
+			</div>\
 		</div>"));
 		
 	}
 	
-	//top build panel
-	for(var i = 0; i < 16; i++) {
+	//roof
+	for(var i = 0; i < 4; i++) {
 		
-		$(id).children('.top-build-panels').append($("<div class = 'panel'>\
+		$(id).children('.roof').children('.towers').append($("<div class = 'tower'>\
 			<div class = 'side'></div>\
 			<div class = 'side'></div>\
 			<div class = 'side'></div>\
