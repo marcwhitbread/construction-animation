@@ -13,12 +13,16 @@
 		
 		top: 0;
 		left: 0;
+		opacity: 0;
+		visibility: 0;
 		
 		.transform(
 			translateX(@structure_story_pillar_indent + @structure_story_indent)
-			translateY(-@structure_height + 5px)
+			translateY(0)
 			translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
 		);
+		
+		.transition(all @build_transition_duration linear);
 		
 		.vert-a { 
 			bottom: 0;
@@ -298,6 +302,11 @@
 				translateZ(0));
 				
 			.size(@width, @depth, @height, @crane_base_color, false, false);
+		}
+		
+		&.show {
+			opacity: 1;
+			visibility: visible;
 		}
 	}
 }

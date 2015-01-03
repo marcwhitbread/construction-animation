@@ -2,13 +2,17 @@
 @ease-out-quint: cubic-bezier(0.230, 1.000, 0.320, 1.000);
 
 @color: #000;
+@dirt_color: #6d574c;
 
-@floors: 26;
+@floors: 20;
+@basement_floors: 4;
 
 @build_init_duration: 0s;
 @delay_build_duration: @build_init_duration;
 @build_floor_step: 500ms;
 @build_duration: @floors * @build_floor_step;
+
+@build_transition_duration: 500ms;
 
 /* crane */
 @crane_width: 8px;
@@ -24,6 +28,11 @@
 @crane_base_color: #3b597f;
 @crane_weight_color: #606568;
 
+/* plot */
+@plot_width: 140px;
+@plot_depth: 140px;
+@plot_height: 2px;
+
 /* structure */
 @structure_width: 100px;
 @structure_depth: 100px;
@@ -32,14 +41,15 @@
 @structure_story_railing_height: 3px;
 @structure_story_floor_height: 1px;
 @structure_story_pillar_indent: 4px;
-@structure_roof_height: 5px;
+@structure_story_roof_height: 5px;
 @structure_build_panel_unindent: 2px;
 @structure_height: (@floors * (@structure_story_height + @structure_story_floor_height)) + 5px;
 @structure_build_deck_height: 5px;
 @structure_build_deck_panel_1_height: (@structure_story_height + @structure_story_floor_height)*1.5;
-@structure_build_deck_panel_2_height: 30px;
+@structure_build_deck_panel_2_height: (@structure_story_height + @structure_story_floor_height)*1.5;
 @structure_wrap_1_height: 30px;
-@structure_wrap_2_height: 60px;
+@structure_wrap_2_floors: 5;
+@structure_wrap_2_height: @structure_wrap_2_floors * (@structure_story_height + @structure_story_floor_height);
 @structure_wrap_indent: 5px;
 
 @structure_story_level_color: #94773e;
@@ -50,6 +60,7 @@
 @structure_glass_color: #a2c3d4;
 @structure_brick_color: #84a1a5;
 @structure_wood_color: #ebcc9d;
+@structure_roof_color: #666;
 @structure_build_deck_color: #f4e178;
 @structure_wrap_1_color: #666;
 @structure_wrap_2_color: #4e7060;

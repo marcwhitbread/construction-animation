@@ -17,20 +17,18 @@
 #plot-a1 {
 	top: 400px;
 	left: 300px;
-	width: 100px;
-	height: 100px;
 	
-	@width: 140px;
-	@depth: 140px;
-	@height: 2px;
+	@width: @plot_width;
+	@depth: @plot_depth;
+	@height: @plot_height;
 	
 	width: @width;
 	height: @height;
 	
-	.size(@width, @depth, @height, #aaa, false, false);
+	.size(@width, @depth, @height, @dirt_color, false, false);
 	.transform(rotateX(-30deg) rotateY(55deg));
+	//.transform(rotateX(-10deg) rotateY(90deg));
 	//.transform(rotateY(90deg));
-	//.transform(rotateY(220deg));
 	//.transform(rotateX(-30deg) rotateY(180deg));
 	
 	.animation(slamdown @build_init_duration @ease-out-quint forwards);
@@ -40,6 +38,7 @@
 }
 
 .container#container-1 {
+	display: none;
 	top: -7px;
 	left: 8px;
 	
@@ -48,6 +47,7 @@
 }
 
 .container#container-2 {
+	display: none;
 	top: -7px;
 	left: 126px;
 	

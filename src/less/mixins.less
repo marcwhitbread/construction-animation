@@ -25,6 +25,16 @@
 	transition: @transition;
 }
 
+.transition-delay(@delay) {
+	-webkit-transition-delay: @delay;
+    transition-delay: @delay;
+}
+
+.transition-duration(@duration) {
+	-webkit-transition-duration: @duration;
+    transition-duration: @duration;
+}
+
 .transition-transform(@transition) {
 	-webkit-transition: -webkit-transform @transition;
 	-moz-transition: -moz-transform @transition;

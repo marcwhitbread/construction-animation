@@ -14,84 +14,60 @@
 	width: @width;
 	height: 0;
 
-	.transition(height 1000ms linear);
 	.size(@width, @depth, @height, rgba(0,0,0,0), false, true);
 	.transform(
-		translateX(20px)
+		translateX((@plot_width - @structure_width)/2)
 		translateY(-2px)
 	);
 	
-	//.animation(buildup @build_duration linear @delay_build_duration forwards);
-	
-	.roof {
+	.base-tile {
+		opacity: 0.5;
+		position: absolute;
 		top: 0;
 		left: 0;
-
-		@width: @structure_width;
-		@depth: @structure_depth;
-		@height: @structure_roof_height;
+		
+		@indent: 4px;
+		@width: @structure_width - @indent;
+		@height: @structure_width - @indent;
 		
 		width: @width;
 		height: @height;
+		border: (@plot_width - @width)/2 solid @dirt_color;
 		
-		.size(@width, @depth, @height, rgba(0,0,0,0), false, false);
 		.transform(
-			translateX(0)
+			translateX(-(@plot_width - @structure_width)/2)
+			translateY(-@structure_width/2 - (@plot_width - @structure_width)/2)
+			translateZ(1px)
+			rotateX(90deg)
+		);
+	}
+	
+	.basement {
+		opacity: 0.5;
+		position: absolute;
+		top: 0;
+		left: 0;
+		
+		@width: @structure_width - @structure_story_indent + 2px;
+		@depth: @structure_depth - @structure_story_indent + 2px;
+		@height: @basement_floors * (@structure_story_height + @structure_story_floor_height);
+		
+		width: @width;
+		height: @height;
+	
+		.size(@width, @depth, @height, @dirt_color, false, false);
+		
+		.transform(
+			translateX(@structure_story_indent/2 - 1px)
 			translateY(0)
 		);
-		
-		display: none;
-		
-		.tower {
-			top: 0;
-			left: 0;
-	
-			@width: @crane_width;
-			@depth: @crane_depth;
-			@height: @structure_roof_height;
-			
-			width: @width;
-			height: @height;
-			
-			.size(@width, @depth, @height, @structure_concrete_color, false, true);
-		
-			&:nth-child(1) {
-				.transform(
-					translateX(11px)
-					translateY(0)
-					translateZ(-35px)
-				);
-			}
-			
-			&:nth-child(2) {
-				.transform(
-					translateX(11px)
-					translateY(0)
-					translateZ(35px)
-				);
-			}
-			
-			&:nth-child(3) {
-				.transform(
-					translateX(81px)
-					translateY(0)
-					translateZ(35px)
-				);
-			}
-			
-			&:nth-child(4) {
-				.transform(
-					translateX(81px)
-					translateY(0)
-					translateZ(-35px)
-				);
-			}
-		}
 	}
 	
 	.build-deck {
 		bottom: 0;
 		left: 0;
+		visibility: hidden;
+		opacity: 0;
 		
 		@width: @structure_width;
 		@depth: @structure_depth;
@@ -100,9 +76,9 @@
 		width: @width;
 		height: @height;
 
-		.size(@width, @depth, @height, @crane_base_color, @structure_build_interior_pattern, false);
+		.size(@width, @depth, @height, rgba(0,0,0,0.0), @structure_build_interior_pattern, false);
 		
-		.transition(all 250ms linear);
+		.transition(all @build_transition_duration linear);
 		
 		.light {
 			position: absolute;
@@ -135,10 +111,16 @@
 		
 		.sheet {
 			opacity: 0.5;
-			bottom: 0;
+			top: 0;
 			left: 0;
 			z-index: 4;
 			
+			.transition(all @build_transition_duration linear);
+			
+			> .side {
+				overflow: hidden;
+			}
+
 			.text {
 				display: block;
 				position: absolute;
@@ -150,9 +132,10 @@
 		}
 		
 		&.build-deck-1 {
+		
 			.transform(
 				translateX(0)
-				translateY(-250px)
+				translateY(-@structure_build_deck_panel_1_height/2 - @plot_height/2)
 				translateZ(0)
 			);
 			
@@ -164,7 +147,7 @@
 				width: @width;
 				height: @height;
 				
-				.size(@width, @depth, @height, @structure_build_deck_color, false, false);
+				.size(@width, @depth, @height, @structure_build_deck_color, false, true);
 				
 				.transform(
 					translateX(0)
@@ -176,16 +159,17 @@
 			.sheet {
 				@width: @structure_width - @structure_wrap_indent*2;
 				@depth: @structure_depth - @structure_wrap_indent*2;
-				@height: @structure_wrap_1_height;
+				@height: 0;
 				
 				width: @width;
 				height: @height;
+				max-height: @structure_wrap_1_height;
 				
-				.size(@width, @depth, @height, @structure_wrap_1_color, false, false);
+				.size(@width, @depth, @height, @structure_wrap_1_color, false, true);
 				
 				.transform(
 					translateX(@structure_wrap_indent)
-					translateY(-(@structure_build_deck_height - @structure_build_deck_panel_1_height)/2 - @structure_build_deck_height + @structure_build_deck_panel_1_height/2 + @structure_wrap_1_height - @structure_build_deck_panel_1_height/4)
+					translateY(-(@structure_build_deck_height - @structure_build_deck_panel_1_height)/2 - @structure_build_deck_height + @structure_build_deck_panel_1_height/2)
 					translateZ(0)
 				);
 				
@@ -211,9 +195,10 @@
 		}
 		
 		&.build-deck-2 {
+			
 			.transform(
 				translateX(0)
-				translateY((@structure_build_deck_height - @structure_build_deck_panel_2_height)/2 - 80px)
+				translateY(-@structure_build_deck_panel_2_height/2 - @plot_height/2)
 				translateZ(0)
 			);
 			
@@ -229,20 +214,25 @@
 				
 				.transform(
 					translateX(0)
-					translateY(-(@structure_build_deck_height - @structure_build_deck_panel_2_height)/2)
+					translateY(-(@structure_build_deck_height - @structure_build_deck_panel_2_height)/2 - @structure_build_deck_height + @structure_build_deck_panel_2_height/2)
 					translateZ(0)
 				);
 			}
 			
 			.sheet {
+				top: auto;
+				bottom: 0;
+				
 				@width: @structure_width - @structure_wrap_indent*2;
 				@depth: @structure_depth - @structure_wrap_indent*2;
-				@height: @structure_wrap_2_height;
+				@height: 100px;
 				
 				width: @width;
 				height: @height;
+				min-height: 0;
+				max-height: @structure_wrap_2_height;
 				
-				.size(@width, @depth, @height, @structure_wrap_2_color, false, false);
+				.size(@width, @depth, @height, @structure_wrap_2_color, false, true);
 				
 				.transform(
 					translateX(@structure_wrap_indent)
@@ -253,7 +243,7 @@
 				.text {
 					text-align: right;
 					color: #fff;
-					margin: 0 0 0 0;
+					margin: 2px 0 0 0;
 					
 					font-family: Verdana;
 					font-weight: 700;
@@ -268,6 +258,11 @@
 				}
 			}
 		}
+		
+		&.show {
+			visibility: visible;
+			opacity: 1;			
+		}
 	}
 	
 	.stories {
@@ -279,8 +274,8 @@
 			top: 0;
 			margin: 0 0 @structure_story_height 0;
 			z-index: 2;
-			//visibility: hidden;
-			//opacity: 0;
+			visibility: hidden;
+			opacity: 0;
 			
 			@width: @structure_width - @structure_story_indent*2;
 			@depth: @structure_depth - @structure_story_indent*2;
@@ -293,8 +288,6 @@
 			.transform(
 				translateX(@structure_story_indent)
 			);
-			
-			.transition(all 500ms linear);
 			
 			.wall {
 				bottom: 0;
@@ -313,8 +306,6 @@
 					translateX(@structure_fence_indent)
 					translateY(-@structure_story_floor_height)
 				);
-				
-				.transition(all 500ms linear);
 			}
 			
 			.girders {
@@ -330,8 +321,6 @@
 					width: @width;
 					height: @height;
 					.size(@width, @depth, @height, @structure_steel_color, false, false);
-					
-					.transition(all 500ms linear);
 					
 					&:nth-child(3),
 					&:nth-child(4) {
@@ -394,11 +383,10 @@
 					translateX(0)
 					translateY(0)
 				);
-				
-				.transition(all 500ms linear);
 			}
 			
 			.pillars {
+				
 				.pillar {
 					bottom: 0;
 					left: 0;
@@ -406,14 +394,12 @@
 					
 					@width: @structure_steel_width;
 					@depth: @structure_steel_width;
-					@height: @structure_story_height;
+					@height: 0;
 					
 					width: @width;
 					height: @height;
 					
-					.size(@width, @depth, @height, @structure_steel_color, false, false);
-					
-					.transition(all 500ms linear);
+					.size(@width, @depth, @height, @structure_steel_color, false, true);
 					
 					&:nth-child(1) {
 						.transform(
@@ -449,12 +435,93 @@
 				}
 			}
 			
+			&.ug, 
+			&.ground {
+				
+				.floor {
+					@width: @structure_width - @structure_story_indent;
+					@depth: @structure_depth - @structure_story_indent;
+					@height: @structure_story_floor_height;
+					
+					width: @width;
+					height: @height;
+					.size(@width, @depth, @height, @structure_concrete_color, false, false);
+					
+					.transform(
+						translateX(-@structure_story_indent/2)
+						translateY(0)
+					);
+				}
+			}
+			
+			&.ug {
+				
+				.wall {
+					bottom: 0;
+					z-index: 3;
+					opacity: 0;
+					
+					@width: @structure_width - @structure_story_indent;
+					@depth: @structure_depth - @structure_story_indent;
+					@height: @structure_story_height/2;
+					
+					width: @width;
+					height: @height;
+					.size(@width, @depth, @height, @structure_concrete_color, false, false);
+					
+					.transform(
+						translateX(-@structure_story_indent/2)
+						translateY(-@structure_story_floor_height)
+					);
+				}
+			}
+
 			&.p1 {
 				visibility: visible;
 				opacity: 1;
+				
+				.transition(all @build_transition_duration linear);
+				
+				.wall {
+					.transition(all @build_transition_duration linear);
+				}
+				
+				.girders {
+					.girder {
+						.transition(all @build_transition_duration linear);
+					}
+				}
+				
+				.floor {
+					.transition(all @build_transition_duration linear);
+				}
+				
+				.pillars {
+				
+					.pillar {
+						height: @structure_story_height;
+						
+						.transition(all (@build_transition_duration - 100ms) linear);
+					}
+				}
+				
+				&.roof {
+					
+					.pillars {
+				
+						.pillar {
+							height: @structure_story_roof_height - @structure_story_floor_height;
+							
+							.transition(all (@build_transition_duration - 100ms) linear);
+						}
+					}
+				}
 			}
 			
 			&.p1p2 {
+				visibility: visible;
+				opacity: 1;
+			
 				.wall {
 					opacity: 0;
 				}
@@ -523,8 +590,13 @@
 			}
 			
 			&.p2 {
+				visibility: visible;
+				opacity: 1;
+				
 				.wall {
 					opacity: 0.5;
+					
+					.transition(all @build_transition_duration linear);
 				}
 				
 				.girders {
@@ -533,6 +605,8 @@
 				
 				.floor {
 					opacity: 1;
+					
+					.transition(all @build_transition_duration linear);
 				}
 				
 				.pillars {
@@ -542,9 +616,12 @@
 						@height: @structure_story_height;
 						
 						width: @width;
+						height: @height;
 						
 						.size(@width, @depth, @height, @structure_concrete_color, false, false);
 						
+						.transition(background @build_transition_duration linear);
+
 						&:nth-child(1) {
 							.transform(
 								translateX(@structure_story_pillar_indent)
@@ -578,9 +655,55 @@
 						}
 					}
 				}
+				
+				&.ug {
+					
+					.wall {
+						opacity: 1;
+					}
+				}
+				
+				&.roof {
+					
+					.wall {
+						opacity: 1;
+						
+						@width: @structure_width - @structure_story_indent*2;
+						@depth: @structure_depth - @structure_story_indent*2;
+						@height: @structure_story_roof_height - @structure_story_floor_height;
+						
+						width: @width;
+						height: @height;
+						.size(@width, @depth, @height, @structure_concrete_color, false, false);
+						
+						.transform(
+							translateX(0)
+							translateY(-@structure_story_floor_height)
+						);
+					}
+
+					.pillars {
+				
+						.pillar {
+							@width: @crane_width;
+							@depth: @crane_depth;
+							@height: @structure_story_roof_height - @structure_story_floor_height;
+							
+							width: @width;
+							height: @height;
+							
+							.size(@width, @depth, @height, @structure_concrete_color, false, false);
+							
+							.transition(all (@build_transition_duration - 100ms) linear);
+						}
+					}
+				}
 			}
 			
 			&.p3 {
+				visibility: visible;
+				opacity: 1;
+				
 				.wall {
 					opacity: 0.7;
 					
@@ -657,6 +780,120 @@
 						}
 					}
 				}
+				
+				&.roof {
+					
+					.floor {
+						@width: @structure_width - @structure_story_indent*2;
+						@depth: @structure_depth - @structure_story_indent*2;
+						@height: @structure_story_floor_height;
+						
+						width: @width;
+						height: @height;
+						.size(@width, @depth, @height, @structure_roof_color, false, false);
+						
+						.transition(all @build_transition_duration linear);
+					}
+					
+					.wall {
+						opacity: 1;
+						
+						@width: @structure_width - @structure_story_indent*2;
+						@depth: @structure_depth - @structure_story_indent*2;
+						@height: @structure_story_roof_height - @structure_story_floor_height;
+						
+						width: @width;
+						height: @height;
+						.size(@width, @depth, @height, @structure_roof_color, false, false);
+						
+						.transform(
+							translateX(0)
+							translateY(-@structure_story_floor_height)
+						);
+						
+						.transition(all @build_transition_duration linear);
+					}
+
+					.pillars {
+				
+						.pillar {
+							visibility: hidden;
+							opacity: 0;
+							
+							.transition(all @build_transition_duration linear);
+						}
+					}
+				}
+				
+				&.ug,
+				&.ground {
+					
+					.floor {
+						@width: @structure_width - @structure_story_indent;
+						@depth: @structure_depth - @structure_story_indent;
+						@height: @structure_story_floor_height;
+						
+						width: @width;
+						height: @height;
+						.size(@width, @depth, @height, @structure_concrete_color, false, false);
+						
+						.transform(
+							translateX(-@structure_story_indent/2)
+							translateY(0)
+						);
+					}
+				}
+				
+				&.ground {
+					
+					.wall {
+						@width: @structure_width - @structure_story_indent*2;
+						@depth: @structure_depth - @structure_story_indent*2;
+						@height: @structure_story_height;
+						
+						width: @width;
+						height: @height;
+						.size(@width, @depth, @height, darken(@structure_glass_color, 20%), false, false);
+						
+						.transform(
+							translateX(0)
+							translateY(-@structure_story_floor_height)
+						);
+					}
+				}
+				
+				&.ug {
+					
+					.pillars {
+						
+						.pillar {
+							@width: @crane_width;
+							@depth: @crane_depth;
+							@height: @structure_story_height;
+							
+							width: @width;
+							
+							.size(@width, @depth, @height, @structure_concrete_color, false, false);
+						}
+					}
+					
+					.wall {
+						opacity: 1;
+						
+						@width: @structure_width - @structure_story_indent;
+						@depth: @structure_depth - @structure_story_indent;
+						@height: @structure_story_height/2;
+						
+						width: @width;
+						height: @height;
+						.size(@width, @depth, @height, @structure_concrete_color, false, false);
+						
+						.transform(
+							translateX(-@structure_story_indent/2)
+							translateY(-@structure_story_floor_height)
+						);
+					}
+				}
 			}
 			
 			@iterations: 100;
@@ -666,7 +903,7 @@
 				&:nth-child(@{i}) {
 					.transform(
 						translateX(@structure_story_indent)
-						translateY(-@i * (@structure_story_height + @structure_story_floor_height))
+						translateY(-@i * (@structure_story_height + @structure_story_floor_height) + @basement_floors * (@structure_story_height + @structure_story_floor_height))
 					);
 					
 					.animation-delay(@i * @structure_p1_build_duration);
