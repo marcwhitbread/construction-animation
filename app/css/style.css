@@ -1598,14 +1598,14 @@
   background: rgba(0, 0, 0, 0);
 }
 .structure > .side:nth-child(5) {
-  top: 72.5px;
+  top: 108.5px;
   height: 100px;
-  transform: rotateX(90deg) translateZ(122.5px);
+  transform: rotateX(90deg) translateZ(158.5px);
 }
 .structure > .side:nth-child(6) {
-  bottom: 72.5px;
+  bottom: 108.5px;
   height: 100px;
-  transform: rotateX(-90deg) translateZ(122.5px);
+  transform: rotateX(-90deg) translateZ(158.5px);
 }
 .structure.open-front > .side:nth-child(1) {
   opacity: 0;
@@ -2104,7 +2104,7 @@
   top: auto;
   bottom: 0;
   width: 90px;
-  height: 100px;
+  height: 0;
   min-height: 0;
   max-height: 60px;
   position: absolute;
@@ -2141,14 +2141,14 @@
   background: #395246;
 }
 .structure .build-deck.build-deck-2 .sheet > .side:nth-child(5) {
-  top: 5px;
+  top: -45px;
   height: 90px;
-  transform: rotateX(90deg) translateZ(50px);
+  transform: rotateX(90deg) translateZ(0);
 }
 .structure .build-deck.build-deck-2 .sheet > .side:nth-child(6) {
-  bottom: 5px;
+  bottom: -45px;
   height: 90px;
-  transform: rotateX(-90deg) translateZ(50px);
+  transform: rotateX(-90deg) translateZ(0);
 }
 .structure .build-deck.build-deck-2 .sheet.open-front > .side:nth-child(1) {
   opacity: 0;
@@ -6816,8 +6816,8 @@
   -o-transform: translateX(-2px) translateY(-10px) translateZ(0) rotateY(-10deg);
   position: absolute;
   transform-style: preserve-3d;
-  -webkit-animation: craneswing 10000ms cubic-bezier(0.23, 1, 0.32, 1) infinite;
-  animation: craneswing 10000ms cubic-bezier(0.23, 1, 0.32, 1) infinite;
+  -webkit-animation: craneswing 13000ms cubic-bezier(0.23, 1, 0.32, 1) infinite;
+  animation: craneswing 13000ms cubic-bezier(0.23, 1, 0.32, 1) infinite;
 }
 .structure .crane .vert-a .swivel > .side {
   position: absolute;
@@ -6901,8 +6901,8 @@
   -o-transform: translateX(24px) translateY(2px) translateZ(0);
   position: absolute;
   transform-style: preserve-3d;
-  -webkit-animation: cranetrolley 10000ms cubic-bezier(0.23, 1, 0.32, 1) infinite;
-  animation: cranetrolley 10000ms cubic-bezier(0.23, 1, 0.32, 1) infinite;
+  -webkit-animation: cranetrolley 13000ms cubic-bezier(0.23, 1, 0.32, 1) infinite;
+  animation: cranetrolley 13000ms cubic-bezier(0.23, 1, 0.32, 1) infinite;
 }
 .structure .crane .vert-a .swivel .trolley > .side {
   position: absolute;
@@ -6980,8 +6980,8 @@
   width: 1px;
   height: 2px;
   background: #333333;
-  -webkit-animation: cranehook 10000ms cubic-bezier(0.23, 1, 0.32, 1) infinite;
-  animation: cranehook 10000ms cubic-bezier(0.23, 1, 0.32, 1) infinite;
+  -webkit-animation: cranehook 13000ms cubic-bezier(0.23, 1, 0.32, 1) infinite;
+  animation: cranehook 13000ms cubic-bezier(0.23, 1, 0.32, 1) infinite;
 }
 .structure .crane .vert-a .swivel .trolley .wire .hook {
   bottom: 0;

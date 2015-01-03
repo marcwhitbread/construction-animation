@@ -1,5 +1,5 @@
 var interval = undefined;
-var floors = 20;
+var floors = 26;
 var basement_floors = 4;
 
 //timing
