@@ -2,6 +2,8 @@ var interval = undefined;
 var floors = 26;
 var basement_floors = 4;
 
+
+
 //timing
 var p1_p2_floor_distance = 4;
 var start_at_floor = 5;
@@ -188,11 +190,18 @@ function build_bd2_sheet(floor, element) {
 
 function build_p3(floor, element) {
 	
-	$(element).removeClass('p2').addClass('p3');
+	$(element).addClass('p3').removeClass('p2');
 	
 	setTimeout(function() {
 		build_bd2(floor, element);
 	}, structure_bd2_build_delay);
+	
+	if($(element).hasClass('roof')) {
+		setTimeout(function() {
+			remove_bd1();
+			remove_bd2();
+		}, 0);
+	}
 	
 }
 
@@ -224,13 +233,6 @@ function build_bd2(floor, element) {
 			height: ((floors-floor-structure_wrap_2_floors-2) * (structure_story_height + structure_story_floor_height)) + 'px'
 		});
 		
-	}
-	
-	if($(element).hasClass('roof')) {
-		setTimeout(function() {
-			remove_bd1();
-			remove_bd2();
-		}, p2_build_done_delay + structure_p2_build_delay/2);
 	}
 	
 }
@@ -381,4 +383,10 @@ function build(id) {
 	
 	animation(id);
 		
+}
+
+function create_block() {
+	
+	
+	
 }
