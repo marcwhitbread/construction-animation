@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('construction', []);
+var app = angular.module('ConstructionApp', []);
 var interval = undefined;
 var floors = 26;
 var basement_floors = 4;
@@ -46,7 +46,7 @@ var structure_wrap_1_height = 30;
 var structure_wrap_2_floors = 5;
 var structure_wrap_2_height = structure_wrap_2_floors * (structure_story_height + structure_story_floor_height);
 var structure_wrap_indent = 5;
-
+/*
 $(document).ready(function() {
 	
 	build('#structure');
@@ -393,6 +393,11 @@ function create_block() {
 	
 	
 }
+*/
+app.controller('PlotCtrl', ['$scope', function($scope) {
+}]);
+app.controller('StructureCtrl', ['$scope', function($scope) {
+}]);
 app.factory('Structure', ['width', function(width) {
 	
 	//constructor

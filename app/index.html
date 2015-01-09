@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang = 'en' ng-app = "construction">
+<html lang = 'en' ng-app = "ConstructionApp">
 	
 	<head>
 		
@@ -14,9 +14,9 @@
 
 	<body>
 		
-		<section id = 'plot-a1' class="plot">
-			
-			<div class = 'structure'></div>
+		<div id = 'plot-a1' class = 'plot' ng-controller = "PlotCtrl" ng-include = "'../src/html/plot.html'"></div>
+		
+		<div id = 'plot-a1' class="plot">
 			
 			<div id="structure" class = 'structure'></div>
 				<div class="side"></div>
@@ -210,7 +210,7 @@
 				</div>
 			</div>
 			
-		</section>
+		</div>
 		
 		<script type = 'text/javascript' src = 'lib/angular/angular.min.js'></script>
 		<script type = 'text/javascript' src = 'js/construction.js'></script>
