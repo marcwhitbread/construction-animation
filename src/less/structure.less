@@ -11,14 +11,15 @@
 	@depth: @structure_depth;
 	@height: @structure_height;
 	
-	width: @width;
+	//width: @width;
 	height: 0;
 
 	.size(@width, @depth, @height, rgba(0,0,0,0), false, true);
-	.transform(
+	
+	/*.transform(
 		translateX((@plot_width - @structure_width)/2)
 		translateY(-2px)
-	);
+	);*/
 	
 	.base-tile {
 		position: absolute;
@@ -29,16 +30,16 @@
 		@width: @structure_width - @indent;
 		@height: @structure_width - @indent;
 		
-		width: @width;
-		height: @height;
-		border: (@plot_width - @width)/2 solid @dirt_color;
+		//width: @width;
+		//height: @height;
+		//border: (@plot_width - @width)/2 solid @dirt_color;
 		
-		.transform(
+		/*.transform(
 			translateX(-(@plot_width - @structure_width)/2)
 			translateY(-@structure_width/2 - (@plot_width - @structure_width)/2)
 			translateZ(1px)
 			rotateX(90deg)
-		);
+		);*/
 	}
 	
 	.basement {
@@ -51,15 +52,15 @@
 		@depth: @structure_depth - @structure_story_indent + 2px;
 		@height: @basement_floors * (@structure_story_height + @structure_story_floor_height);
 		
-		width: @width;
-		height: @height;
+		//width: @width;
+		//height: @height;
 	
 		.size(@width, @depth, @height, @dirt_color, false, false);
 		
-		.transform(
+		/*.transform(
 			translateX(@structure_story_indent/2 - 1px)
 			translateY(0)
-		);
+		);*/
 	}
 	
 	.build-deck {
@@ -271,7 +272,6 @@
 		
 		.story {
 			top: 0;
-			margin: 0 0 @structure_story_height 0;
 			z-index: 2;
 			visibility: hidden;
 			opacity: 0;
@@ -280,13 +280,9 @@
 			@depth: @structure_depth - @structure_story_indent*2;
 			@height: @structure_story_height + @structure_story_floor_height;
 			
-			width: @width;
-			height: @height;
+			//width: @width;
+			//height: @height;
 			.size(@width, @depth, @height, rgba(0,0,0,0), false, false);
-			
-			.transform(
-				translateX(@structure_story_indent)
-			);
 			
 			.wall {
 				bottom: 0;
@@ -297,14 +293,14 @@
 				@depth: @structure_depth - @structure_story_indent*2 - @structure_fence_indent*2;
 				@height: @structure_story_height/2;
 				
-				width: @width;
-				height: @height;
+				//width: @width;
+				//height: @height;
 				.size(@width, @depth, @height, @structure_fence_color, false, false);
 				
-				.transform(
+				/*.transform(
 					translateX(@structure_fence_indent)
 					translateY(-@structure_story_floor_height)
-				);
+				);*/
 			}
 			
 			.girders {
@@ -317,8 +313,8 @@
 					@depth: @structure_steel_width;
 					@height: @structure_story_floor_height;
 					
-					width: @width;
-					height: @height;
+					//width: @width;
+					//height: @height;
 					.size(@width, @depth, @height, @structure_steel_color, false, false);
 					
 					&:nth-child(3),
@@ -326,41 +322,41 @@
 						@width: @structure_steel_width;
 						@depth: @structure_width - @structure_story_indent*2 - @structure_story_pillar_indent*2 - @crane_width - @structure_steel_width;
 						
-						width: @width;
-						height: @height;
+						//width: @width;
+						//height: @height;
 						.size(@width, @depth, @height, @structure_steel_color, false, false);
 					}
 						
 					&:nth-child(1) {
-						.transform(
+						/*.transform(
 							translateX(@structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
 							translateY(0)
 							translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
-						);
+						);*/
 					}
 					
 					&:nth-child(2) {
-						.transform(
+						/*.transform(
 							translateX(@structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
 							translateY(0)
 							translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
-						);
+						);*/
 					}
 					
 					&:nth-child(3) {
-						.transform(
+						/*.transform(
 							translateX(@structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
 							translateY(0)
 							translateZ(0)
-						);
+						);*/
 					}
 					
 					&:nth-child(4) {
-						.transform(
+						/*.transform(
 							translateX(@structure_width - @structure_story_indent*2 - @crane_width/2 - @structure_story_pillar_indent - @structure_steel_width/2)
 							translateY(0)
 							translateZ(0)
-						);
+						);*/
 					}
 				}
 			}
@@ -374,14 +370,9 @@
 				@depth: @structure_depth - @structure_story_indent*2;
 				@height: @structure_story_floor_height;
 				
-				width: @width;
-				height: @height;
+				//width: @width;
+				//height: @height;
 				.size(@width, @depth, @height, @structure_concrete_color, false, false);
-				
-				.transform(
-					translateX(0)
-					translateY(0)
-				);
 			}
 			
 			.pillars {
@@ -395,8 +386,8 @@
 					@depth: @structure_steel_width;
 					@height: 0;
 					
-					width: @width;
-					height: @height;
+					//width: @width;
+					//height: @height;
 					
 					.size(@width, @depth, @height, @structure_steel_color, false, true);
 					
@@ -435,7 +426,7 @@
 			}
 			
 			&.ug, 
-			&.ground {
+			&.gr {
 				
 				.floor {
 					@width: @structure_width - @structure_story_indent;
@@ -825,7 +816,7 @@
 				}
 				
 				&.ug,
-				&.ground {
+				&.gr {
 					
 					.floor {
 						@width: @structure_width - @structure_story_indent;
@@ -843,7 +834,7 @@
 					}
 				}
 				
-				&.ground {
+				&.gr {
 					
 					.wall {
 						@width: @structure_width - @structure_story_indent*2;
@@ -895,11 +886,15 @@
 				}
 			}
 			
+		}
+		
+		/*> .ng-scope {
+			
 			@iterations: 100;
 		
 			.mixin-loop (@i) when (@i > 0) {
 				
-				&:nth-child(@{i}) {
+				&:nth-child(@{i}) > .story {
 					.transform(
 						translateX(@structure_story_indent)
 						translateY(-@i * (@structure_story_height + @structure_story_floor_height) + @basement_floors * (@structure_story_height + @structure_story_floor_height))
@@ -930,7 +925,7 @@
 			}
 			
 			.mixin-loop(@iterations);
-		}
+		}*/
 	}
 	
 	.crane();

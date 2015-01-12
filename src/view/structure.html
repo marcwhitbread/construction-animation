@@ -1,0 +1,13 @@
+<div class = 'structure' ng-controller = "StructureCtrl" ng-style = "structure.style_base()">
+	
+	<div class = 'base-tile' ng-style = "structure.style_base_tile()"></div>
+				
+	<div class = 'basement open-top' ng-style = "structure.style_basement()">
+		<div ng-include = "'partials/sides.html'"></div>
+	</div>
+	
+	<div class = 'stories'>
+		<div ng-include = "'partials/story.html'" ng-repeat = "story in stories"></div>
+	</div>
+	
+</div>

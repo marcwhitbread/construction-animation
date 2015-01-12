@@ -1,6 +1,7 @@
 @import "_variables.less";
 @import "mixins.less";
 @import "animations.less";
+@import "structure.less";
 
 @build_init_duration: 0s;
 @delay_build_duration: @build_init_duration;
@@ -22,8 +23,8 @@
 	@depth: @plot_depth;
 	@height: @plot_height;
 	
-	width: @width;
-	height: @height;
+	//width: @width;
+	//height: @height;
 	
 	.size(@width, @depth, @height, @dirt_color, false, false);
 	.transform(rotateX(-35deg) rotateY(-55deg));

@@ -1,0 +1,49 @@
+<div class="story p1" ng-class="{ug: story.is_underground(), gr: story.is_ground(), roof: story.is_roof()}" ng-style="story.style.base" ng-controller="StoryCtrl">
+	
+	<div ng-include="'partials/sides.html'"></div>
+	
+	<div class="girders">
+		<div class="girder" ng-style="story.style.girder[0]">
+			<div ng-include="'partials/sides.html'"></div>
+		</div>
+		
+		<div class="girder" ng-style="story.style.girder[1]">
+			<div ng-include="'partials/sides.html'"></div>
+		</div>
+		
+		<div class="girder" ng-style="story.style.girder[2]">
+			<div ng-include="'partials/sides.html'"></div>
+		</div>
+		
+		<div class="girder" ng-style="story.style.girder[3]">
+			<div ng-include="'partials/sides.html'"></div>
+		</div>
+	</div>
+	
+	<div class="floor" ng-style="story.style.floor">
+		<div ng-include="'partials/sides.html'"></div>
+	</div>
+	
+	<div class="wall open-top open-bottom" ng-style="story.style.wall">
+		<div ng-include="'partials/sides.html'"></div>
+	</div>
+	
+	<div class="pillars">
+		<div class="pillar" ng-style="story.style.pillar[0]">
+			<div ng-include="'partials/sides.html'"></div>
+		</div>
+		
+		<div class="pillar" ng-style="story.style.pillar[1]">
+			<div ng-include="'partials/sides.html'"></div>
+		</div>
+		
+		<div class="pillar" ng-style="story.style.pillar[2]">
+			<div ng-include="'partials/sides.html'"></div>
+		</div>
+		
+		<div class="pillar" ng-style="story.style.pillar[3]">
+			<div ng-include="'partials/sides.html'"></div>
+		</div>
+	</div>
+	
+</div>
