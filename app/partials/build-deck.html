@@ -1,0 +1,11 @@
+<div class="build-deck-{{build_deck.id}} build-deck show" ng-controller="BuildDeckCtrl" ng-style="build_deck.style.base">
+	<div ng-include="'partials/sides.html'"></div>
+	
+	<div class="panel open-top open-bottom" ng-style="build_deck.style.panel">
+		<div ng-include="'partials/sides.html'"></div>
+	</div>
+	
+	<div class="sheet open-top open-bottom" ng-style="build_deck.style.sheet">
+		<div ng-include="'partials/sides.html'"></div>
+	</div>
+</div>

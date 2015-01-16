@@ -73,8 +73,8 @@
 		@depth: @structure_depth;
 		@height: @structure_build_deck_height;
 		
-		width: @width;
-		height: @height;
+		//width: @width;
+		//height: @height;
 
 		.size(@width, @depth, @height, rgba(0,0,0,0.0), @structure_build_interior_pattern, false);
 		
@@ -133,27 +133,27 @@
 		
 		&.build-deck-1 {
 		
-			.transform(
+			/*.transform(
 				translateX(0)
 				translateY(-@structure_build_deck_panel_1_height/2 - @plot_height/2)
 				translateZ(0)
-			);
+			);*/
 			
 			.panel {
 				@width: @structure_width;
 				@depth: @structure_depth;
 				@height: @structure_build_deck_panel_1_height;
 				
-				width: @width;
-				height: @height;
+				//width: @width;
+				//height: @height;
 				
 				.size(@width, @depth, @height, @structure_build_deck_color, false, true);
 				
-				.transform(
+				/*.transform(
 					translateX(0)
 					translateY(-(@structure_build_deck_height - @structure_build_deck_panel_1_height)/2 - @structure_build_deck_height + @structure_build_deck_panel_1_height/2)
 					translateZ(0)
-				);
+				);*/
 			}
 			
 			.sheet {

@@ -833,8 +833,6 @@
   left: 0;
   visibility: hidden;
   opacity: 0;
-  width: 100px;
-  height: 5px;
   position: absolute;
   transform-style: preserve-3d;
   -webkit-transition: all 500ms linear;
@@ -972,20 +970,20 @@
   left: 0;
 }
 .structure .build-deck.build-deck-1 {
-  -webkit-transform: translateX(0) translateY(-10px) translateZ(0);
-  -moz-transform: translateX(0) translateY(-10px) translateZ(0);
-  -ms-transform: translateX(0) translateY(-10px) translateZ(0);
-  -o-transform: translateX(0) translateY(-10px) translateZ(0);
+  /*.transform(
+				translateX(0)
+				translateY(-@structure_build_deck_panel_1_height/2 - @plot_height/2)
+				translateZ(0)
+			);*/
 }
 .structure .build-deck.build-deck-1 .panel {
-  width: 100px;
-  height: 18px;
   position: absolute;
   transform-style: preserve-3d;
-  -webkit-transform: translateX(0) translateY(10.5px) translateZ(0);
-  -moz-transform: translateX(0) translateY(10.5px) translateZ(0);
-  -ms-transform: translateX(0) translateY(10.5px) translateZ(0);
-  -o-transform: translateX(0) translateY(10.5px) translateZ(0);
+  /*.transform(
+					translateX(0)
+					translateY(-(@structure_build_deck_height - @structure_build_deck_panel_1_height)/2 - @structure_build_deck_height + @structure_build_deck_panel_1_height/2)
+					translateZ(0)
+				);*/
 }
 .structure .build-deck.build-deck-1 .panel > .ng-scope > .side {
   position: absolute;
@@ -4339,10 +4337,10 @@
   left: 300px;
   position: absolute;
   transform-style: preserve-3d;
-  -webkit-transform: rotateX(-35deg) rotateY(-55deg);
-  -moz-transform: rotateX(-35deg) rotateY(-55deg);
-  -ms-transform: rotateX(-35deg) rotateY(-55deg);
-  -o-transform: rotateX(-35deg) rotateY(-55deg);
+  -webkit-transform: rotateX(0deg) rotateY(-55deg);
+  -moz-transform: rotateX(0deg) rotateY(-55deg);
+  -ms-transform: rotateX(0deg) rotateY(-55deg);
+  -o-transform: rotateX(0deg) rotateY(-55deg);
 }
 #plot-a1 > .ng-scope > .side {
   position: absolute;

@@ -13,9 +13,4 @@ app.controller('PlotCtrl', ['$scope', 'Plot', 'Pallet', function($scope, Plot, P
 	
 	$scope.plot = new Plot(data.width, data.depth, data.height, pallet);
 	
-	/*$scope.style = {
-		width: $scope.plot.width + 'px',
-		height: $scope.plot.height + 'px'
-	}*/
-	
 }]);

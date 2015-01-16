@@ -1,18 +1,13 @@
 app.factory('Structure', [function() {
 	
 	//constructor
-	var Structure = function(floors, basement_floors, width, depth, roof_height, base_indent, build_panel_unindent, build_deck_height, wrap_1_height, wrap_2_floors, wrap_indent, steel_width, fence_indent, pillar_p2_width, story_indent, story_height, story_railing_height, story_floor_height, story_pillar_indent, plot) {
+	var Structure = function(floors, basement_floors, width, depth, roof_height, base_indent, steel_width, fence_indent, pillar_p2_width, story_indent, story_height, story_railing_height, story_floor_height, story_pillar_indent, plot) {
 		this.floors = floors;
 		this.basement_floors = basement_floors;
 		this.width = width;
 		this.depth = depth;
 		this.roof_height = roof_height;
 		this.base_indent = base_indent;
-		this.build_panel_unindent = build_panel_unindent;
-		this.build_deck_height = build_deck_height;
-		this.wrap_1_height = wrap_1_height;
-		this.wrap_2_floors = wrap_2_floors;
-		this.wrap_indent = wrap_indent;
 		this.steel_width = steel_width;
 		this.fence_indent = fence_indent;
 		this.pillar_p2_width = pillar_p2_width;
@@ -29,18 +24,6 @@ app.factory('Structure', [function() {
 		
 		height: function() {
 			return (this.floors * (this.story_height + this.story_floor_height)) + 5;
-		},
-		
-		build_deck_panel_1_height: function() { 
-			return (this.story_height + this.story_floor_height)*1.5;
-		},
-		
-		build_deck_panel_2_height: function() {
-			return (this.story_height + this.story_floor_height)*1.5;
-		},
-		
-		wrap_2_height: function() {
-			return this.wrap_2_floors * (this.story_height + this.story_floor_height);
 		},
 		
 		style_base: function() {

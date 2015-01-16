@@ -173,8 +173,6 @@ app.factory('Story', [function() {
 				}
 			}
 			
-			console.log(style.pillar[0]);
-			
 			return style;
 		}
 		

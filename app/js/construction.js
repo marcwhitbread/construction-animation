@@ -42,6 +42,7 @@ var structure_height = (floors * (structure_story_height + structure_story_floor
 var structure_build_deck_height = 5;
 var structure_build_deck_panel_1_height = (structure_story_height + structure_story_floor_height)*1.5;
 var structure_build_deck_panel_2_height = (structure_story_height + structure_story_floor_height)*1.5;
+var structure_wrap_1_floors = 1.5;
 var structure_wrap_1_height = 30;
 var structure_wrap_2_floors = 5;
 var structure_wrap_2_height = structure_wrap_2_floors * (structure_story_height + structure_story_floor_height);
@@ -394,18 +395,12 @@ function create_block() {
 	
 }
 */
-app.factory('Pallet', [function() {
+app.controller('BuildDeckCtrl', ['$scope', function($scope) {
 	
-	//constructor
-	var Pallet = function(dirt) {
-		this.dirt = dirt;
-	}
 	
-	//public methods
-	Pallet.prototype = {
-	}
 	
-	return Pallet;
+}]);
+app.controller('MainCtrl', ['$scope', function($scope) {
 	
 }]);
 app.controller('PlotCtrl', ['$scope', 'Plot', 'Pallet', function($scope, Plot, Pallet) {
@@ -423,47 +418,13 @@ app.controller('PlotCtrl', ['$scope', 'Plot', 'Pallet', function($scope, Plot, P
 	
 	$scope.plot = new Plot(data.width, data.depth, data.height, pallet);
 	
-	/*$scope.style = {
-		width: $scope.plot.width + 'px',
-		height: $scope.plot.height + 'px'
-	}*/
-	
 }]);
 app.controller('StoryCtrl', ['$scope', function($scope) {
 	
-	//$scope.level = $scope.story;
-	//$scope.story = $scope.plot.structure.story;
-	//$scope.is_underground = ($scope.story < $scope.plot.structure.basement_floors) ? true : false;
-	//$scope.is_ground = ($scope.story == $scope.plot.structure.basement_floors) ? true : false;
 	
-	/*if(i < basement_floors) ? ' ug' : (i == basement_floors) ? ' ground' : (i == floors-1) ? ' roof' : '';
-	var p1_built = (i < basement_floors-1) ? ' p1' : '';
-	var p2_built = (i < start_at_floor-basement_floors) ? ' p2' : '';*/
-	
-	/*$scope.styles = {
-		def: {
-			width: ($scope.structure.width - $scope.story.indent*2) + 'px',
-			height: $scope.story.height + $scope.story.floor_height + 'px',
-			'-webkit-transform': 'translate3d(' + $scope.story.indent + 'px, ' + -$scope.level * ($scope.story.height + $scope.story.floor_height) + $scope.structure.basement_floors * ($scope.story.height + $scope.story.floor_height) + 'px, 0)'
-		},
-		p1: {
-			
-		},
-		p2: {
-			
-		},
-		p3: {
-			
-		}
-	}
-	
-	$scope.style = $scope.styles.def;*/
 	
 }]);
-
-//translateX(@structure_story_indent)
-//translateY()
-app.controller('StructureCtrl', ['$scope', '$filter', 'Structure', 'Story', function($scope, $filter, Structure, Story) {
+app.controller('StructureCtrl', ['$scope', '$filter', 'Structure', 'BuildDeck', 'Story', function($scope, $filter, Structure, BuildDeck, Story) {
 	
 	var data = {
 		floors: 26,
@@ -474,8 +435,8 @@ app.controller('StructureCtrl', ['$scope', '$filter', 'Structure', 'Story', func
 		base_indent: 4,
 		build_panel_unindent: 2,
 		build_deck_height: 5,
-		wrap_1_height: 30,
-		wrap_2_floors: 5,
+		wrap_1_floors: 2.5,
+		wrap_2_floors: 6,
 		wrap_indent: 5,
 		steel_width: 4,
 		fence_indent: 2,
@@ -487,11 +448,85 @@ app.controller('StructureCtrl', ['$scope', '$filter', 'Structure', 'Story', func
 		story_pillar_indent: 4
 	}
 	
-	$scope.structure = new Structure(data.floors, data.basement_floors, data.width, data.depth, data.roof_height, data.base_indent, data.build_panel_unindent, data.build_deck_height, data.wrap_1_height,data. wrap_2_floors, data.wrap_indent, data.steel_width, data.fence_indent, data.pillar_p2_width, data.story_indent, data.story_height, data.story_railing_height, data.story_floor_height, data.story_pillar_indent, $scope.plot);
+	$scope.structure = new Structure(data.floors, data.basement_floors, data.width, data.depth, data.roof_height, data.base_indent, data.steel_width, data.fence_indent, data.pillar_p2_width, data.story_indent, data.story_height, data.story_railing_height, data.story_floor_height, data.story_pillar_indent, $scope.plot);
 	
 	$scope.stories = [];
 	for(var i = 0; i < $scope.structure.floors; i++)
 		$scope.stories.push(new Story(i, data.story_indent, data.story_height, data.story_railing_height, data.story_floor_height, $scope.structure.story_pillar_indent, $scope.structure.floors, $scope.structure.basement_floors, $scope.structure));
+		
+	$scope.build_decks = [];
+	$scope.build_decks.push(new BuildDeck(1, data.build_panel_unindent, data.build_deck_height, data.wrap_indent, data.wrap_1_floors, $scope.stories[0], $scope.structure));
+	$scope.build_decks.push(new BuildDeck(2, data.build_panel_unindent, data.build_deck_height, data.wrap_indent, data.wrap_2_floors, $scope.stories[0], $scope.structure));
+	
+}]);
+app.factory('BuildDeck', [function() {
+	
+	//constructor
+	var BuildDeck = function(id, panel_unindent, height, wrap_indent, wrap_floors, story, structure) {
+		this.id = id;
+		this.panel_unindent = panel_unindent;
+		this.height = height;
+		this.wrap_indent = wrap_indent;
+		this.wrap_floors = wrap_floors;
+		this.story = story;
+		this.structure = structure;
+		
+		this.style = this.style();
+	}
+	
+	//public methods
+	BuildDeck.prototype = {
+		
+		wrap_height: function() {
+			return this.wrap_floors * (this.story.height + this.story.floor_height);
+		},
+		
+		panel_height: function() {
+			return (this.story.height + this.story.floor_height)*1.5;
+		},
+		
+		style: function() {
+			
+			var style = {
+				base: {
+					width: this.structure.width + 'px',
+					height: this.height + 'px',
+					webkitTransform: 'translate3d(0, ' + (-this.panel_height()/2 - this.structure.plot.height/2 - 100) + 'px, 0)'
+				},
+				panel: {
+					width: this.structure.width + 'px',
+					height: this.panel_height() + 'px',
+					webkitTransform: 'translate3d(0, ' + (-(this.height - this.panel_height())/2 - this.height + this.panel_height()/2) + 'px, 0)'
+				},
+				sheet: {					
+					width: this.structure.width - this.wrap_indent*2 + 'px',
+					height: this.wrap_height() + 'px',
+					maxHeight: this.wrap_height() + 'px',
+					webkitTransform: 'translate3d(' + this.wrap_indent + 'px, ' + (-this.height/2 + this.panel_height()/2) + 'px, 0)'
+				}
+			}
+			
+			return style;
+			
+		}
+		
+	}
+	
+	return BuildDeck;
+	
+}]);
+app.factory('Pallet', [function() {
+	
+	//constructor
+	var Pallet = function(dirt) {
+		this.dirt = dirt;
+	}
+	
+	//public methods
+	Pallet.prototype = {
+	}
+	
+	return Pallet;
 	
 }]);
 app.factory('Plot', [function() {
@@ -694,8 +729,6 @@ app.factory('Story', [function() {
 				}
 			}
 			
-			console.log(style.pillar[0]);
-			
 			return style;
 		}
 		
@@ -707,18 +740,13 @@ app.factory('Story', [function() {
 app.factory('Structure', [function() {
 	
 	//constructor
-	var Structure = function(floors, basement_floors, width, depth, roof_height, base_indent, build_panel_unindent, build_deck_height, wrap_1_height, wrap_2_floors, wrap_indent, steel_width, fence_indent, pillar_p2_width, story_indent, story_height, story_railing_height, story_floor_height, story_pillar_indent, plot) {
+	var Structure = function(floors, basement_floors, width, depth, roof_height, base_indent, steel_width, fence_indent, pillar_p2_width, story_indent, story_height, story_railing_height, story_floor_height, story_pillar_indent, plot) {
 		this.floors = floors;
 		this.basement_floors = basement_floors;
 		this.width = width;
 		this.depth = depth;
 		this.roof_height = roof_height;
 		this.base_indent = base_indent;
-		this.build_panel_unindent = build_panel_unindent;
-		this.build_deck_height = build_deck_height;
-		this.wrap_1_height = wrap_1_height;
-		this.wrap_2_floors = wrap_2_floors;
-		this.wrap_indent = wrap_indent;
 		this.steel_width = steel_width;
 		this.fence_indent = fence_indent;
 		this.pillar_p2_width = pillar_p2_width;
@@ -735,18 +763,6 @@ app.factory('Structure', [function() {
 		
 		height: function() {
 			return (this.floors * (this.story_height + this.story_floor_height)) + 5;
-		},
-		
-		build_deck_panel_1_height: function() { 
-			return (this.story_height + this.story_floor_height)*1.5;
-		},
-		
-		build_deck_panel_2_height: function() {
-			return (this.story_height + this.story_floor_height)*1.5;
-		},
-		
-		wrap_2_height: function() {
-			return this.wrap_2_floors * (this.story_height + this.story_floor_height);
 		},
 		
 		style_base: function() {

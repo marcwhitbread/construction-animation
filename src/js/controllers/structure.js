@@ -1,4 +1,4 @@
-app.controller('StructureCtrl', ['$scope', '$filter', 'Structure', 'Story', function($scope, $filter, Structure, Story) {
+app.controller('StructureCtrl', ['$scope', '$filter', 'Structure', 'BuildDeck', 'Story', function($scope, $filter, Structure, BuildDeck, Story) {
 	
 	var data = {
 		floors: 26,
@@ -9,8 +9,8 @@ app.controller('StructureCtrl', ['$scope', '$filter', 'Structure', 'Story', func
 		base_indent: 4,
 		build_panel_unindent: 2,
 		build_deck_height: 5,
-		wrap_1_height: 30,
-		wrap_2_floors: 5,
+		wrap_1_floors: 2.5,
+		wrap_2_floors: 6,
 		wrap_indent: 5,
 		steel_width: 4,
 		fence_indent: 2,
@@ -22,10 +22,14 @@ app.controller('StructureCtrl', ['$scope', '$filter', 'Structure', 'Story', func
 		story_pillar_indent: 4
 	}
 	
-	$scope.structure = new Structure(data.floors, data.basement_floors, data.width, data.depth, data.roof_height, data.base_indent, data.build_panel_unindent, data.build_deck_height, data.wrap_1_height,data. wrap_2_floors, data.wrap_indent, data.steel_width, data.fence_indent, data.pillar_p2_width, data.story_indent, data.story_height, data.story_railing_height, data.story_floor_height, data.story_pillar_indent, $scope.plot);
+	$scope.structure = new Structure(data.floors, data.basement_floors, data.width, data.depth, data.roof_height, data.base_indent, data.steel_width, data.fence_indent, data.pillar_p2_width, data.story_indent, data.story_height, data.story_railing_height, data.story_floor_height, data.story_pillar_indent, $scope.plot);
 	
 	$scope.stories = [];
 	for(var i = 0; i < $scope.structure.floors; i++)
 		$scope.stories.push(new Story(i, data.story_indent, data.story_height, data.story_railing_height, data.story_floor_height, $scope.structure.story_pillar_indent, $scope.structure.floors, $scope.structure.basement_floors, $scope.structure));
+		
+	$scope.build_decks = [];
+	$scope.build_decks.push(new BuildDeck(1, data.build_panel_unindent, data.build_deck_height, data.wrap_indent, data.wrap_1_floors, $scope.stories[0], $scope.structure));
+	$scope.build_decks.push(new BuildDeck(2, data.build_panel_unindent, data.build_deck_height, data.wrap_indent, data.wrap_2_floors, $scope.stories[0], $scope.structure));
 	
 }]);

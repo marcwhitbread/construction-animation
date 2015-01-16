@@ -39,6 +39,7 @@ var structure_height = (floors * (structure_story_height + structure_story_floor
 var structure_build_deck_height = 5;
 var structure_build_deck_panel_1_height = (structure_story_height + structure_story_floor_height)*1.5;
 var structure_build_deck_panel_2_height = (structure_story_height + structure_story_floor_height)*1.5;
+var structure_wrap_1_floors = 1.5;
 var structure_wrap_1_height = 30;
 var structure_wrap_2_floors = 5;
 var structure_wrap_2_height = structure_wrap_2_floors * (structure_story_height + structure_story_floor_height);
