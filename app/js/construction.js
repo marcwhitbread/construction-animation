@@ -648,13 +648,13 @@ app.factory('Story', [function() {
 				
 				if(this.is_roof()) {
 					style.wall.width = (this.structure.width - this.indent*2) + 'px';
-					style.wall.height = this.roof_height - this.floor_height + 'px';
+					style.wall.height = this.structure.roof_height - this.floor_height + 'px';
 					style.wall.webkitTransform = 'translate3d(0, ' + -this.floor_height + 'px, 0)';
 					
-					style.pillar[0].height = this.roof_height - this.floor_height + 'px';
-					style.pillar[1].height = this.roof_height - this.floor_height + 'px';
-					style.pillar[2].height = this.roof_height - this.floor_height + 'px';
-					style.pillar[3].height = this.roof_height - this.floor_height + 'px';
+					style.pillar[0].height = this.structure.roof_height - this.floor_height + 'px';
+					style.pillar[1].height = this.structure.roof_height - this.floor_height + 'px';
+					style.pillar[2].height = this.structure.roof_height - this.floor_height + 'px';
+					style.pillar[3].height = this.structure.roof_height - this.floor_height + 'px';
 				}
 			}
 			
@@ -679,7 +679,7 @@ app.factory('Story', [function() {
 				style.pillar[3].webkitTransform = 'translate3d(' + (this.structure.width - this.indent*2 - this.structure.pillar_p2_width - this.pillar_indent) + 'px, ' + -this.floor_height + 'px, ' + (this.structure.width/2 - this.indent - this.structure.pillar_p2_width/2 - this.pillar_indent) + 'px)';
 				
 				if(this.is_roof()) {
-					style.wall.height = this.roof_height - this.floor_height + 'px';	
+					style.wall.height = this.structure.roof_height - this.floor_height + 'px';	
 				}
 				
 				if(this.is_underground() || this.is_ground()) {
