@@ -1829,39 +1829,41 @@
   opacity: 0;
 }
 .structure .stories .story .pillars .pillar:nth-child(1) {
-  -webkit-transform: translateX(6px) translateY(-1px) translateZ(-36px);
-  -moz-transform: translateX(6px) translateY(-1px) translateZ(-36px);
-  -ms-transform: translateX(6px) translateY(-1px) translateZ(-36px);
-  -o-transform: translateX(6px) translateY(-1px) translateZ(-36px);
+  /*.transform(
+							translateX(@structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
+							translateY(-@structure_story_floor_height)
+							translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
+						);*/
 }
 .structure .stories .story .pillars .pillar:nth-child(2) {
-  -webkit-transform: translateX(6px) translateY(-1px) translateZ(36px);
-  -moz-transform: translateX(6px) translateY(-1px) translateZ(36px);
-  -ms-transform: translateX(6px) translateY(-1px) translateZ(36px);
-  -o-transform: translateX(6px) translateY(-1px) translateZ(36px);
+  /*.transform(
+							translateX(@structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
+							translateY(-@structure_story_floor_height)
+							translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
+						);*/
 }
 .structure .stories .story .pillars .pillar:nth-child(3) {
-  -webkit-transform: translateX(78px) translateY(-1px) translateZ(-36px);
-  -moz-transform: translateX(78px) translateY(-1px) translateZ(-36px);
-  -ms-transform: translateX(78px) translateY(-1px) translateZ(-36px);
-  -o-transform: translateX(78px) translateY(-1px) translateZ(-36px);
+  /*.transform(
+							translateX(@structure_width - @structure_story_indent*2 - @crane_width - @structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
+							translateY(-@structure_story_floor_height)
+							translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
+						);*/
 }
 .structure .stories .story .pillars .pillar:nth-child(4) {
-  -webkit-transform: translateX(78px) translateY(-1px) translateZ(36px);
-  -moz-transform: translateX(78px) translateY(-1px) translateZ(36px);
-  -ms-transform: translateX(78px) translateY(-1px) translateZ(36px);
-  -o-transform: translateX(78px) translateY(-1px) translateZ(36px);
+  /*.transform(
+							translateX(@structure_width - @structure_story_indent*2 - @crane_width - @structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
+							translateY(-@structure_story_floor_height)
+							translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
+						);*/
 }
 .structure .stories .story.ug .floor,
 .structure .stories .story.gr .floor {
-  width: 94px;
-  height: 1px;
   position: absolute;
   transform-style: preserve-3d;
-  -webkit-transform: translateX(-3px) translateY(0);
-  -moz-transform: translateX(-3px) translateY(0);
-  -ms-transform: translateX(-3px) translateY(0);
-  -o-transform: translateX(-3px) translateY(0);
+  /*.transform(
+						translateX(-@structure_story_indent/2)
+						translateY(0)
+					);*/
 }
 .structure .stories .story.ug .floor > .ng-scope > .side,
 .structure .stories .story.gr .floor > .ng-scope > .side {
@@ -1954,8 +1956,6 @@
   bottom: 0;
   z-index: 3;
   opacity: 0;
-  width: 94px;
-  height: 5.5px;
   position: absolute;
   transform-style: preserve-3d;
   -webkit-transform: translateX(-3px) translateY(-1px);
@@ -2064,7 +2064,6 @@
   transition: all 500ms linear;
 }
 .structure .stories .story.p1 .pillars .pillar {
-  height: 11px;
   -webkit-transition: all 400ms linear;
   -moz-transition: all 400ms linear;
   -ms-transition: all 400ms linear;
@@ -2072,7 +2071,6 @@
   transition: all 400ms linear;
 }
 .structure .stories .story.p1.roof .pillars .pillar {
-  height: 4px;
   -webkit-transition: all 400ms linear;
   -moz-transition: all 400ms linear;
   -ms-transition: all 400ms linear;
@@ -2316,8 +2314,6 @@
   transition: all 500ms linear;
 }
 .structure .stories .story.p2 .pillars .pillar {
-  width: 8px;
-  height: 11px;
   position: absolute;
   transform-style: preserve-3d;
   -webkit-transition: background 500ms linear;
@@ -2325,6 +2321,38 @@
   -ms-transition: background 500ms linear;
   -o-transition: background 500ms linear;
   transition: background 500ms linear;
+  /*
+						&:nth-child(1) {
+							.transform(
+								translateX(@structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
+							);
+						}
+						
+						&:nth-child(2) {
+							.transform(
+								translateX(@structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
+							);
+						}
+						
+						&:nth-child(3) {
+							.transform(
+								translateX(@structure_width - @structure_story_indent*2 - @crane_width - @structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
+							);
+						}
+						
+						&:nth-child(4) {
+							.transform(
+								translateX(@structure_width - @structure_story_indent*2 - @crane_width - @structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
+							);
+						}*/
 }
 .structure .stories .story.p2 .pillars .pillar > .ng-scope > .side {
   position: absolute;
@@ -2396,43 +2424,17 @@
 .structure .stories .story.p2 .pillars .pillar.open-bottom > .ng-scope > .side:nth-child(6) {
   opacity: 0;
 }
-.structure .stories .story.p2 .pillars .pillar:nth-child(1) {
-  -webkit-transform: translateX(4px) translateY(-1px) translateZ(-36px);
-  -moz-transform: translateX(4px) translateY(-1px) translateZ(-36px);
-  -ms-transform: translateX(4px) translateY(-1px) translateZ(-36px);
-  -o-transform: translateX(4px) translateY(-1px) translateZ(-36px);
-}
-.structure .stories .story.p2 .pillars .pillar:nth-child(2) {
-  -webkit-transform: translateX(4px) translateY(-1px) translateZ(36px);
-  -moz-transform: translateX(4px) translateY(-1px) translateZ(36px);
-  -ms-transform: translateX(4px) translateY(-1px) translateZ(36px);
-  -o-transform: translateX(4px) translateY(-1px) translateZ(36px);
-}
-.structure .stories .story.p2 .pillars .pillar:nth-child(3) {
-  -webkit-transform: translateX(76px) translateY(-1px) translateZ(-36px);
-  -moz-transform: translateX(76px) translateY(-1px) translateZ(-36px);
-  -ms-transform: translateX(76px) translateY(-1px) translateZ(-36px);
-  -o-transform: translateX(76px) translateY(-1px) translateZ(-36px);
-}
-.structure .stories .story.p2 .pillars .pillar:nth-child(4) {
-  -webkit-transform: translateX(76px) translateY(-1px) translateZ(36px);
-  -moz-transform: translateX(76px) translateY(-1px) translateZ(36px);
-  -ms-transform: translateX(76px) translateY(-1px) translateZ(36px);
-  -o-transform: translateX(76px) translateY(-1px) translateZ(36px);
-}
 .structure .stories .story.p2.ug .wall {
   opacity: 1;
 }
 .structure .stories .story.p2.roof .wall {
   opacity: 1;
-  width: 88px;
-  height: 4px;
   position: absolute;
   transform-style: preserve-3d;
-  -webkit-transform: translateX(0) translateY(-1px);
-  -moz-transform: translateX(0) translateY(-1px);
-  -ms-transform: translateX(0) translateY(-1px);
-  -o-transform: translateX(0) translateY(-1px);
+  /*.transform(
+							translateX(0)
+							translateY(-@structure_story_floor_height)
+						);*/
 }
 .structure .stories .story.p2.roof .wall > .ng-scope > .side {
   position: absolute;
@@ -2505,8 +2507,6 @@
   opacity: 0;
 }
 .structure .stories .story.p2.roof .pillars .pillar {
-  width: 8px;
-  height: 4px;
   position: absolute;
   transform-style: preserve-3d;
   -webkit-transition: all 400ms linear;
@@ -2751,9 +2751,39 @@
   opacity: 0;
 }
 .structure .stories .story.p3 .pillars .pillar {
-  width: 8px;
   position: absolute;
   transform-style: preserve-3d;
+  /*&:nth-child(1) {
+							.transform(
+								translateX(@structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
+							);
+						}
+						
+						&:nth-child(2) {
+							.transform(
+								translateX(@structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
+							);
+						}
+						
+						&:nth-child(3) {
+							.transform(
+								translateX(@structure_width - @structure_story_indent*2 - @crane_width - @structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
+							);
+						}
+						
+						&:nth-child(4) {
+							.transform(
+								translateX(@structure_width - @structure_story_indent*2 - @crane_width - @structure_story_pillar_indent)
+								translateY(-@structure_story_floor_height)
+								translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
+							);
+						}*/
 }
 .structure .stories .story.p3 .pillars .pillar > .ng-scope > .side {
   position: absolute;
@@ -2825,33 +2855,7 @@
 .structure .stories .story.p3 .pillars .pillar.open-bottom > .ng-scope > .side:nth-child(6) {
   opacity: 0;
 }
-.structure .stories .story.p3 .pillars .pillar:nth-child(1) {
-  -webkit-transform: translateX(4px) translateY(-1px) translateZ(-36px);
-  -moz-transform: translateX(4px) translateY(-1px) translateZ(-36px);
-  -ms-transform: translateX(4px) translateY(-1px) translateZ(-36px);
-  -o-transform: translateX(4px) translateY(-1px) translateZ(-36px);
-}
-.structure .stories .story.p3 .pillars .pillar:nth-child(2) {
-  -webkit-transform: translateX(4px) translateY(-1px) translateZ(36px);
-  -moz-transform: translateX(4px) translateY(-1px) translateZ(36px);
-  -ms-transform: translateX(4px) translateY(-1px) translateZ(36px);
-  -o-transform: translateX(4px) translateY(-1px) translateZ(36px);
-}
-.structure .stories .story.p3 .pillars .pillar:nth-child(3) {
-  -webkit-transform: translateX(76px) translateY(-1px) translateZ(-36px);
-  -moz-transform: translateX(76px) translateY(-1px) translateZ(-36px);
-  -ms-transform: translateX(76px) translateY(-1px) translateZ(-36px);
-  -o-transform: translateX(76px) translateY(-1px) translateZ(-36px);
-}
-.structure .stories .story.p3 .pillars .pillar:nth-child(4) {
-  -webkit-transform: translateX(76px) translateY(-1px) translateZ(36px);
-  -moz-transform: translateX(76px) translateY(-1px) translateZ(36px);
-  -ms-transform: translateX(76px) translateY(-1px) translateZ(36px);
-  -o-transform: translateX(76px) translateY(-1px) translateZ(36px);
-}
 .structure .stories .story.p3.roof .floor {
-  width: 88px;
-  height: 1px;
   position: absolute;
   transform-style: preserve-3d;
   -webkit-transition: all 500ms linear;
@@ -2932,14 +2936,12 @@
 }
 .structure .stories .story.p3.roof .wall {
   opacity: 1;
-  width: 88px;
-  height: 4px;
   position: absolute;
   transform-style: preserve-3d;
-  -webkit-transform: translateX(0) translateY(-1px);
-  -moz-transform: translateX(0) translateY(-1px);
-  -ms-transform: translateX(0) translateY(-1px);
-  -o-transform: translateX(0) translateY(-1px);
+  /*.transform(
+							translateX(0)
+							translateY(-@structure_story_floor_height)
+						);*/
   -webkit-transition: all 500ms linear;
   -moz-transition: all 500ms linear;
   -ms-transition: all 500ms linear;
@@ -3027,14 +3029,12 @@
 }
 .structure .stories .story.p3.ug .floor,
 .structure .stories .story.p3.gr .floor {
-  width: 94px;
-  height: 1px;
   position: absolute;
   transform-style: preserve-3d;
-  -webkit-transform: translateX(-3px) translateY(0);
-  -moz-transform: translateX(-3px) translateY(0);
-  -ms-transform: translateX(-3px) translateY(0);
-  -o-transform: translateX(-3px) translateY(0);
+  /*.transform(
+							translateX(-@structure_story_indent/2)
+							translateY(0)
+						);*/
 }
 .structure .stories .story.p3.ug .floor > .ng-scope > .side,
 .structure .stories .story.p3.gr .floor > .ng-scope > .side {
@@ -3124,14 +3124,12 @@
   opacity: 0;
 }
 .structure .stories .story.p3.gr .wall {
-  width: 88px;
-  height: 11px;
   position: absolute;
   transform-style: preserve-3d;
-  -webkit-transform: translateX(0) translateY(-1px);
-  -moz-transform: translateX(0) translateY(-1px);
-  -ms-transform: translateX(0) translateY(-1px);
-  -o-transform: translateX(0) translateY(-1px);
+  /*.transform(
+							translateX(0)
+							translateY(-@structure_story_floor_height)
+						);*/
 }
 .structure .stories .story.p3.gr .wall > .ng-scope > .side {
   position: absolute;
@@ -3204,7 +3202,6 @@
   opacity: 0;
 }
 .structure .stories .story.p3.ug .pillars .pillar {
-  width: 8px;
   position: absolute;
   transform-style: preserve-3d;
 }
@@ -3280,14 +3277,12 @@
 }
 .structure .stories .story.p3.ug .wall {
   opacity: 1;
-  width: 94px;
-  height: 5.5px;
   position: absolute;
   transform-style: preserve-3d;
-  -webkit-transform: translateX(-3px) translateY(-1px);
-  -moz-transform: translateX(-3px) translateY(-1px);
-  -ms-transform: translateX(-3px) translateY(-1px);
-  -o-transform: translateX(-3px) translateY(-1px);
+  /*.transform(
+							translateX(-@structure_story_indent/2)
+							translateY(-@structure_story_floor_height)
+						);*/
 }
 .structure .stories .story.p3.ug .wall > .ng-scope > .side {
   position: absolute;

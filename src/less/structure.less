@@ -392,35 +392,35 @@
 					.size(@width, @depth, @height, @structure_steel_color, false, true);
 					
 					&:nth-child(1) {
-						.transform(
+						/*.transform(
 							translateX(@structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
 							translateY(-@structure_story_floor_height)
 							translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
-						);
+						);*/
 					}
 					
 					&:nth-child(2) {
-						.transform(
+						/*.transform(
 							translateX(@structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
 							translateY(-@structure_story_floor_height)
 							translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
-						);
+						);*/
 					}
 					
 					&:nth-child(3) {
-						.transform(
+						/*.transform(
 							translateX(@structure_width - @structure_story_indent*2 - @crane_width - @structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
 							translateY(-@structure_story_floor_height)
 							translateZ(-@structure_width/2 + @structure_story_indent + @crane_width/2 + @structure_story_pillar_indent)
-						);
+						);*/
 					}
 					
 					&:nth-child(4) {
-						.transform(
+						/*.transform(
 							translateX(@structure_width - @structure_story_indent*2 - @crane_width - @structure_story_pillar_indent + (@crane_width - @structure_steel_width)/2)
 							translateY(-@structure_story_floor_height)
 							translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
-						);
+						);*/
 					}
 				}
 			}
@@ -433,14 +433,14 @@
 					@depth: @structure_depth - @structure_story_indent;
 					@height: @structure_story_floor_height;
 					
-					width: @width;
-					height: @height;
+					//width: @width;
+					//height: @height;
 					.size(@width, @depth, @height, @structure_concrete_color, false, false);
 					
-					.transform(
+					/*.transform(
 						translateX(-@structure_story_indent/2)
 						translateY(0)
-					);
+					);*/
 				}
 			}
 			
@@ -455,8 +455,8 @@
 					@depth: @structure_depth - @structure_story_indent;
 					@height: @structure_story_height/2;
 					
-					width: @width;
-					height: @height;
+					//width: @width;
+					//height: @height;
 					.size(@width, @depth, @height, @structure_concrete_color, false, false);
 					
 					.transform(
@@ -489,7 +489,7 @@
 				.pillars {
 				
 					.pillar {
-						height: @structure_story_height;
+						//height: @structure_story_height;
 						
 						.transition(all (@build_transition_duration - 100ms) linear);
 					}
@@ -500,7 +500,7 @@
 					.pillars {
 				
 						.pillar {
-							height: @structure_story_roof_height - @structure_story_floor_height;
+							//height: @structure_story_roof_height - @structure_story_floor_height;
 							
 							.transition(all (@build_transition_duration - 100ms) linear);
 						}
@@ -605,13 +605,14 @@
 						@depth: @crane_depth;
 						@height: @structure_story_height;
 						
-						width: @width;
-						height: @height;
+						//width: @width;
+						//height: @height;
 						
 						.size(@width, @depth, @height, @structure_concrete_color, false, false);
 						
 						.transition(background @build_transition_duration linear);
 
+						/*
 						&:nth-child(1) {
 							.transform(
 								translateX(@structure_story_pillar_indent)
@@ -642,7 +643,7 @@
 								translateY(-@structure_story_floor_height)
 								translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
 							);
-						}
+						}*/
 					}
 				}
 				
@@ -662,14 +663,14 @@
 						@depth: @structure_depth - @structure_story_indent*2;
 						@height: @structure_story_roof_height - @structure_story_floor_height;
 						
-						width: @width;
-						height: @height;
+						//width: @width;
+						//height: @height;
 						.size(@width, @depth, @height, @structure_concrete_color, false, false);
 						
-						.transform(
+						/*.transform(
 							translateX(0)
 							translateY(-@structure_story_floor_height)
-						);
+						);*/
 					}
 
 					.pillars {
@@ -679,8 +680,8 @@
 							@depth: @crane_depth;
 							@height: @structure_story_roof_height - @structure_story_floor_height;
 							
-							width: @width;
-							height: @height;
+							//width: @width;
+							//height: @height;
 							
 							.size(@width, @depth, @height, @structure_concrete_color, false, false);
 							
@@ -733,11 +734,11 @@
 						@depth: @crane_depth;
 						@height: @structure_story_height;
 						
-						width: @width;
+						//width: @width;
 						
 						.size(@width, @depth, @height, @structure_brick_color, false, false);
 						
-						&:nth-child(1) {
+						/*&:nth-child(1) {
 							.transform(
 								translateX(@structure_story_pillar_indent)
 								translateY(-@structure_story_floor_height)
@@ -767,7 +768,7 @@
 								translateY(-@structure_story_floor_height)
 								translateZ(@structure_width/2 - @structure_story_indent - @crane_width/2 - @structure_story_pillar_indent)
 							);
-						}
+						}*/
 					}
 				}
 				
@@ -778,8 +779,8 @@
 						@depth: @structure_depth - @structure_story_indent*2;
 						@height: @structure_story_floor_height;
 						
-						width: @width;
-						height: @height;
+						//width: @width;
+						//height: @height;
 						.size(@width, @depth, @height, @structure_roof_color, false, false);
 						
 						.transition(all @build_transition_duration linear);
@@ -792,14 +793,14 @@
 						@depth: @structure_depth - @structure_story_indent*2;
 						@height: @structure_story_roof_height - @structure_story_floor_height;
 						
-						width: @width;
-						height: @height;
+						//width: @width;
+						//height: @height;
 						.size(@width, @depth, @height, @structure_roof_color, false, false);
 						
-						.transform(
+						/*.transform(
 							translateX(0)
 							translateY(-@structure_story_floor_height)
-						);
+						);*/
 						
 						.transition(all @build_transition_duration linear);
 					}
@@ -823,14 +824,14 @@
 						@depth: @structure_depth - @structure_story_indent;
 						@height: @structure_story_floor_height;
 						
-						width: @width;
-						height: @height;
+						//width: @width;
+						//height: @height;
 						.size(@width, @depth, @height, @structure_concrete_color, false, false);
 						
-						.transform(
+						/*.transform(
 							translateX(-@structure_story_indent/2)
 							translateY(0)
-						);
+						);*/
 					}
 				}
 				
@@ -841,14 +842,14 @@
 						@depth: @structure_depth - @structure_story_indent*2;
 						@height: @structure_story_height;
 						
-						width: @width;
-						height: @height;
+						//width: @width;
+						//height: @height;
 						.size(@width, @depth, @height, darken(@structure_glass_color, 20%), false, false);
 						
-						.transform(
+						/*.transform(
 							translateX(0)
 							translateY(-@structure_story_floor_height)
-						);
+						);*/
 					}
 				}
 				
@@ -861,7 +862,7 @@
 							@depth: @crane_depth;
 							@height: @structure_story_height;
 							
-							width: @width;
+							//width: @width;
 							
 							.size(@width, @depth, @height, @structure_concrete_color, false, false);
 						}
@@ -874,14 +875,14 @@
 						@depth: @structure_depth - @structure_story_indent;
 						@height: @structure_story_height/2;
 						
-						width: @width;
-						height: @height;
+						//width: @width;
+						//height: @height;
 						.size(@width, @depth, @height, @structure_concrete_color, false, false);
 						
-						.transform(
+						/*.transform(
 							translateX(-@structure_story_indent/2)
 							translateY(-@structure_story_floor_height)
-						);
+						);*/
 					}
 				}
 			}
