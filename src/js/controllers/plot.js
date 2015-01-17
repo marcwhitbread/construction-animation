@@ -11,6 +11,9 @@ app.controller('PlotCtrl', ['$scope', 'Plot', 'Pallet', function($scope, Plot, P
 	
 	var pallet = new Pallet(data.colors.dirt);
 	
+	$scope.shape = {
+		sides: [1,2,3,4,5,6]
+	}
 	$scope.plot = new Plot(data.width, data.depth, data.height, pallet);
 	
 }]);

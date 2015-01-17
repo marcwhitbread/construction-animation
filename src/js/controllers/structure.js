@@ -1,7 +1,7 @@
 app.controller('StructureCtrl', ['$scope', '$filter', 'Structure', 'BuildDeck', 'Story', function($scope, $filter, Structure, BuildDeck, Story) {
 	
 	var data = {
-		floors: 26,
+		floors: 24,
 		basement_floors: 4,
 		width: 100,
 		depth: 100,

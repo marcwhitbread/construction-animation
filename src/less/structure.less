@@ -161,17 +161,17 @@
 				@depth: @structure_depth - @structure_wrap_indent*2;
 				@height: 0;
 				
-				width: @width;
-				height: @height;
-				max-height: @structure_wrap_1_height;
+				//width: @width;
+				//height: @height;
+				//max-height: @structure_wrap_1_height;
 				
 				.size(@width, @depth, @height, @structure_wrap_1_color, false, true);
 				
-				.transform(
+				/*.transform(
 					translateX(@structure_wrap_indent)
 					translateY(-(@structure_build_deck_height - @structure_build_deck_panel_1_height)/2 - @structure_build_deck_height + @structure_build_deck_panel_1_height/2)
 					translateZ(0)
-				);
+				);*/
 				
 				.text {
 					top: auto;
@@ -196,27 +196,27 @@
 		
 		&.build-deck-2 {
 			
-			.transform(
+			/*.transform(
 				translateX(0)
 				translateY(-@structure_build_deck_panel_2_height/2 - @plot_height/2)
 				translateZ(0)
-			);
+			);*/
 			
 			.panel {
 				@width: @structure_width;
 				@depth: @structure_depth;
 				@height: @structure_build_deck_panel_2_height;
 				
-				width: @width;
-				height: @height;
+				//width: @width;
+				//height: @height;
 				
 				.size(@width, @depth, @height, @structure_build_deck_color, false, false);
 				
-				.transform(
+				/*.transform(
 					translateX(0)
 					translateY(-(@structure_build_deck_height - @structure_build_deck_panel_2_height)/2 - @structure_build_deck_height + @structure_build_deck_panel_2_height/2)
 					translateZ(0)
-				);
+				);*/
 			}
 			
 			.sheet {
@@ -227,18 +227,18 @@
 				@depth: @structure_depth - @structure_wrap_indent*2;
 				@height: 0;
 				
-				width: @width;
-				height: @height;
+				//width: @width;
+				//height: @height;
 				min-height: 0;
-				max-height: @structure_wrap_2_height;
+				//max-height: @structure_wrap_2_height;
 				
 				.size(@width, @depth, @height, @structure_wrap_2_color, false, true);
 				
-				.transform(
+				/*.transform(
 					translateX(@structure_wrap_indent)
 					translateY(-@structure_build_deck_height)
 					translateZ(0)
-				);
+				);*/
 				
 				.text {
 					text-align: right;
